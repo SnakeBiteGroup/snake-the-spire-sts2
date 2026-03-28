@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -18,16 +19,21 @@ namespace LOM.SBModCode.CardsFix;
 [HarmonyPatch(typeof(PerfectedStrike))]
 public static class PerfectedStrikePatch
 {
+    [HarmonyPatch("ExtraHoverTips", MethodType.Getter)]
+    [HarmonyPostfix]
+    static void ExtraHoverTipsPostfix(PerfectedStrike __instance, ref IEnumerable<IHoverTip> __result)
+    {
+        __result = new List<IHoverTip> { HoverTipFactory.FromPower<PoisonPower>() };
+    }
+
     [HarmonyPatch("CanonicalVars", MethodType.Getter)]
     [HarmonyPostfix]
     static void CanonicalVarsPostfix(PerfectedStrike __instance, ref IEnumerable<DynamicVar> __result)
     {
-        __result = new DynamicVar[3]
+        __result = new DynamicVar[2]
         {
-            new CalculationBaseVar(7m),
-            new ExtraDamageVar(3m),
-            new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) => 
-                card.Owner.PlayerCombatState.AllCards.Count((CardModel c) => c is Snakebite))
+            new PowerVar<PoisonPower>(7m),
+            new ExtraDamageVar(3m)
         };
     }
 
@@ -43,7 +49,7 @@ public static class PerfectedStrikePatch
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         var snakebiteCount = instance.Owner.PlayerCombatState.AllCards.Count((CardModel c) => c is Snakebite);
-        int poisonAmount = 7 + (snakebiteCount * (int)instance.DynamicVars.ExtraDamage.BaseValue);
+        int poisonAmount = (int)instance.DynamicVars.Poison.BaseValue + (snakebiteCount * (int)instance.DynamicVars.ExtraDamage.BaseValue);
         await PowerCmd.Apply<PoisonPower>(cardPlay.Target, poisonAmount, instance.Owner.Creature, instance);
     }
 

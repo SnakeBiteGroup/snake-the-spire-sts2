@@ -6,6 +6,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -16,6 +17,13 @@ namespace LOM.SBModCode.CardsFix;
 [HarmonyPatch(typeof(AdaptiveStrike))]
 public static class AdaptiveStrikePatch
 {
+    [HarmonyPatch("ExtraHoverTips", MethodType.Getter)]
+    [HarmonyPostfix]
+    static void ExtraHoverTipsPostfix(AdaptiveStrike __instance, ref IEnumerable<IHoverTip> __result)
+    {
+        __result = new List<IHoverTip> { HoverTipFactory.FromPower<PoisonPower>() };
+    }
+
     [HarmonyPatch("OnPlay")]
     [HarmonyPrefix]
     static bool OnPlayPrefix(AdaptiveStrike __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
