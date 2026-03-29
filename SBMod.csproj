@@ -97,6 +97,8 @@
         <EmbeddedResource Remove="CharModCode\**" />
         <Compile Remove="SBMod\localizations\**" />
         <EmbeddedResource Remove="SBMod\localizations\**" />
+        <Compile Remove="SBModCode\Helper\**" />
+        <EmbeddedResource Remove="SBModCode\Helper\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -108,6 +110,7 @@
 
     <ItemGroup>
       <Folder Include="SBModCode\RelicsFix\" />
+      <Folder Include="SBModCode\Relics\" />
     </ItemGroup>
 
     <ItemGroup>

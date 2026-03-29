@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using HarmonyLib;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;
@@ -21,8 +19,11 @@ public static class CardImagePatch
         typeof(Orbit),
         typeof(PerfectedStrike),
         typeof(MasterPlanner),
-        typeof(Barrage),
-        typeof(SeekingEdge)
+        typeof(SeekingEdge),
+        typeof(DoubleEnergy),
+        typeof(HiddenDaggers),
+        typeof(FanOfKnives),
+        typeof(Shiv)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
