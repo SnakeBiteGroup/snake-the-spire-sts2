@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace LOM.SBModCode.CardsFix;
+namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch]
 public static class CardImagePatch

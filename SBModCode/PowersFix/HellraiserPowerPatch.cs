@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace LOM.SBModCode.CardsFix;
+namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch(typeof(HellraiserPower))]
 public static class HellraiserPowerPatch
