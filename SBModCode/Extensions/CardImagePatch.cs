@@ -4,6 +4,7 @@ using HarmonyLib;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace LOM.SBModCode.CardsFix;
 
@@ -12,13 +13,13 @@ public static class CardImagePatch
 {
     private static readonly HashSet<Type> ModifiedCards = new HashSet<Type>
     {
-        typeof(MegaCrit.Sts2.Core.Models.Cards.AdaptiveStrike),
-        typeof(MegaCrit.Sts2.Core.Models.Cards.Barrage),
-        typeof(MegaCrit.Sts2.Core.Models.Cards.BelieveInYou),
-        typeof(MegaCrit.Sts2.Core.Models.Cards.CrashLanding),
-        typeof(MegaCrit.Sts2.Core.Models.Cards.Hellraiser),
-        typeof(MegaCrit.Sts2.Core.Models.Cards.Orbit),
-        typeof(MegaCrit.Sts2.Core.Models.Cards.PerfectedStrike)
+        typeof(AdaptiveStrike),
+        typeof(Barrage),
+        typeof(BelieveInYou),
+        typeof(CrashLanding),
+        typeof(Hellraiser),
+        typeof(Orbit),
+        typeof(PerfectedStrike)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
