@@ -17,5 +17,5 @@ mono_crash.*.json
 
 Local.props
 SBMod.pck
-
+packages/
 *.uid
