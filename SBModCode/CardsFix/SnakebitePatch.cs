@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace LOM.SBModCode.CardsFix;
 
-//追踪之剑的效果事实上是在君王之剑卡牌里实现的
+//追踪之剑和刀扇的效果事实上是在君王之剑和小刀卡牌里实现的
 [HarmonyPatch(typeof(Snakebite))]
 public static class SnakebitePatch
 {
@@ -23,6 +23,15 @@ public static class SnakebitePatch
         if (CombatManager.Instance.IsInProgress)
         {
             return instance.Owner.Creature.HasPower<SeekingEdgePower>();
+        }
+        return false;
+    }
+
+    private static bool HasFanOfKnives(Snakebite instance)
+    {
+        if (CombatManager.Instance.IsInProgress)
+        {
+            return instance.Owner.Creature.HasPower<FanOfKnivesPower>();
         }
         return false;
     }
@@ -50,7 +59,7 @@ public static class SnakebitePatch
         var extraPoison = GetExtraPoisonFromStrikeDummy(instance);
         var totalPoison = instance.DynamicVars.Poison.BaseValue + extraPoison;
         
-        if (HasSeekingEdge(instance))
+        if (HasSeekingEdge(instance) || HasFanOfKnives(instance))
         {
             await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Cast", instance.Owner.Character.CastAnimDelay);
             var hittableEnemies = instance.CombatState.HittableEnemies;
