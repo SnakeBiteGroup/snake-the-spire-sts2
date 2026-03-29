@@ -20,7 +20,9 @@ public static class CardImagePatch
         typeof(Hellraiser),
         typeof(Orbit),
         typeof(PerfectedStrike),
-        typeof(MasterPlanner)
+        typeof(MasterPlanner),
+        typeof(Barrage),
+        typeof(SeekingEdge)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
