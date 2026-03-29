@@ -19,3 +19,4 @@ Local.props
 SBMod.pck
 packages/
 *.uid
+*.import
