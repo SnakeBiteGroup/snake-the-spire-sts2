@@ -23,14 +23,15 @@ public static class CardImagePatch
         typeof(DoubleEnergy),
         typeof(HiddenDaggers),
         typeof(FanOfKnives),
-        typeof(Shiv)
+        typeof(Shiv),
+        typeof(StormOfSteel)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
     [HarmonyPostfix]
     static void HasPortraitPostfix(CardModel __instance, ref bool __result)
     {
-        if (!__result && ModifiedCards.Contains(__instance.GetType()))
+        if (ModifiedCards.Contains(__instance.GetType()))
         {
             var cardPoolTitle = __instance.Pool.Title.ToLowerInvariant();
             var cardIdEntry = __instance.Id.Entry.ToLowerInvariant();

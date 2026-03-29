@@ -109,6 +109,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="images\packed\card_portraits\curse\" />
+      <Folder Include="images\packed\card_portraits\necrobinder\" />
+      <Folder Include="images\packed\card_portraits\quest\" />
+      <Folder Include="images\packed\card_portraits\status\" />
       <Folder Include="SBModCode\RelicsFix\" />
       <Folder Include="SBModCode\Relics\" />
     </ItemGroup>
@@ -118,6 +122,7 @@
       <Content Include="images\packed\card_portraits\**\*.png" />
       <Content Include="images\packed\card_portraits\**\*.png.import" />
       <Content Include="SBMod\localization\zhs\powers.json" />
+      <Content Include="SBMod\localization\zhs\static_hover_tips.json" />
     </ItemGroup>
     
     <Target Name="CopyToModsFolderOnPublish" AfterTargets="Publish">

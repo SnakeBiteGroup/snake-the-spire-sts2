@@ -18,17 +18,19 @@
   "ORBIT.title": "蛇咬轨道",
   "ORBIT.description": "你每打出[blue]4[/blue]张[gold]蛇咬[/gold]，就将[blue]1[/blue]张[gold]蛇咬[/gold]加入手牌。",
   "MASTER_PLANNER.title": "蛇咬专家",
-  "MASTER_PLANNER.description": "当你打出技能牌时，该牌变化为[gold]蛇咬[/gold]。若技能牌升级过，则变化为[gold]蛇咬+[/gold]。",
+  "MASTER_PLANNER.description": "当你打出技能牌时，该牌变化为[gold]{IfUpgraded:show:蛇咬+|蛇咬}[/gold]。",
   "BARRAGE.description": "当前手牌中每有一张[gold]蛇咬[/gold]，给予{Damage:diff()}层[gold]中毒[/gold]。{InCombat:\n（咬中{CalculatedHits:diff()}次）|}",
   "BARRAGE.title": "蛇幕齐咬",
   "SOVEREIGN_BLADE.title": "君王之咬",
   "SOVEREIGN_BLADE.description": "{SeekingEdgeAmount:cond:>0? 对所有敌人|}施加{Damage:diff()}层[gold]中毒[/gold]{Repeat:choose(1):|{}次}。",
   "SPOILS_MAP.title": "藏蛇图",
-  "SPOILS_MAP.description": "在下一阶段的地图上，标记一个有{Gold:diff()}张[red]蛇咬[/red]的地点。",
+  "SPOILS_MAP.description": "在下一阶段的地图上，标记一个有{Gold:diff()}张[gold]蛇咬[/gold]的地点。",
   "ROLLING_BOULDER.title": "滚蛇",
   "ROLLING_BOULDER.description": "在你的回合开始时，对所有敌人施加{RollingBoulderPower:diff()}层[gold]中毒[/gold]，然后将该层数增加{IncrementAmount:diff()}层。",
   "HIDDEN_DAGGERS.title": "隐秘蛇咬",
   "HIDDEN_DAGGERS.description": "丢弃{Cards:diff()}张牌。\n将{Shivs:diff()}张[gold]{IfUpgraded:show:蛇咬+|蛇咬}[/gold]加入你的[gold]手牌[/gold]。",
   "DOUBLE_ENERGY.title": "双倍蛇咬",
-  "DOUBLE_ENERGY.description": "将所有[gold]蛇咬[/gold]卡牌复制一份。"
+  "DOUBLE_ENERGY.description": "将所有[gold]蛇咬[/gold]复制一份。",
+  "STORM_OF_STEEL.title": "钢蛇咬爆",
+  "STORM_OF_STEEL.description": "丢弃所有[gold]手牌[/gold]。\n每丢弃一张牌，就将一张[gold]{IfUpgraded:show:小咬+|小咬}[/gold]添加至你的[gold]手牌[/gold]。"
 }
