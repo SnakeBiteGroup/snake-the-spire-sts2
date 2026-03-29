@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace LOM.SBModCode.CardsFix;
+namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch(typeof(PerfectedStrike))]
 public static class PerfectedStrikePatch

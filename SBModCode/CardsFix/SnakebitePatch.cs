@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 
-namespace LOM.SBModCode.CardsFix;
+namespace SBMod.SBModCode.CardsFix;
 
 //追踪之剑和刀扇的效果事实上是在君王之剑和小刀卡牌里实现的
 [HarmonyPatch(typeof(Snakebite))]
