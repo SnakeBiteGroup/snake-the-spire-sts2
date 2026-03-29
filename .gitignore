@@ -17,6 +17,10 @@ mono_crash.*.json
 
 Local.props
 SBMod.pck
-packages/
+
 *.uid
-*.import
+.idea/
+
+# 包相关目录
+.package/
+packages/
