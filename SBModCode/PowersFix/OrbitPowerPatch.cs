@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace LOM.SBModCode.PowersFix;
+namespace SBMod.SBModCode.PowersFix;
 
 [HarmonyPatch(typeof(OrbitPower))]
 public static class OrbitPowerPatch

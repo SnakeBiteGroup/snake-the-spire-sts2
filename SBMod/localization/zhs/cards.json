@@ -16,5 +16,7 @@
   "SHIV.title": "小咬",
   "SHIV.description": "{FanOfKnivesAmount:cond:>0? 对所有敌人|}施加{Damage:diff()}层[gold]中毒[/gold]。",
   "ORBIT.title": "蛇咬轨道",
-  "ORBIT.description": "你每打出[blue]4[/blue]张[gold]蛇咬[/gold]，就将[blue]1[/blue]张[gold]蛇咬[/gold]加入手牌。"
+  "ORBIT.description": "你每打出[blue]4[/blue]张[gold]蛇咬[/gold]，就将[blue]1[/blue]张[gold]蛇咬[/gold]加入手牌。",
+  "MASTER_PLANNER.title": "蛇咬专家",
+  "MASTER_PLANNER.description": "当你打出技能牌时，该牌变化为[gold]蛇咬[/gold]。若技能牌升级过，则变化为[gold]蛇咬+[/gold]。"
 }
