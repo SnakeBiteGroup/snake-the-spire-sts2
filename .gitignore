@@ -19,6 +19,7 @@ Local.props
 SBMod.pck
 
 *.uid
+*.import
 .idea/
 
 # 包相关目录
