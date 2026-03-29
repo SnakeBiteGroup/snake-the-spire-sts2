@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace LOM.SBModCode.CardsFix;
 
@@ -48,10 +49,8 @@ public static class BarragePatch
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         var handCards = CardPile.GetCards(instance.Owner, PileType.Hand);
         int snakebiteCount = handCards.Count(card => card is Snakebite);
-        await DamageCmd.Attack(instance.DynamicVars.Damage.BaseValue).WithHitCount(snakebiteCount).FromCard(instance)
-            .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt")
-            .Execute(choiceContext);
+        var totalPoison = instance.DynamicVars.Damage.BaseValue * snakebiteCount;
+        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, totalPoison, instance.Owner.Creature, instance);
     }
 }
 

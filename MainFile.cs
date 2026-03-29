@@ -8,14 +8,14 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
-namespace CharMod;
+namespace SBMOD;
 
 [ModInitializer(nameof(Initialize))]
 public partial class MainFile : Node
 {
-    public const string ModId = "LOM"; //Used for resource filepath
+    public const string ModId = "SBMOD"; //Used for resource filepath
 
-    public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } = new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
+    public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } = new(ModId, LogType.Generic);
 
     public static void Initialize()
     {

@@ -8,8 +8,6 @@
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
         <RootNamespace>SBMod</RootNamespace>
-        
-        <!-- 🔧 优化：禁用增量构建，强制每次全量编译 -->
         <UseIncrementalBuild>false</UseIncrementalBuild>
         <MSBuildDisableNodeReuse>true</MSBuildDisableNodeReuse>
     </PropertyGroup>
@@ -78,7 +76,6 @@
         <AdditionalFiles Include="assets/localization/**/*.json"/>
     </ItemGroup>
 
-    <!-- 🔧 优化：只排除非代码文件夹（materials/shaders），绝不排除代码文件夹 -->
     <ItemGroup>
         <Compile Remove="materials/**" />
         <Compile Remove="shaders/**" />
@@ -119,7 +116,6 @@
       <Content Include="images\packed\card_portraits\**\*.png.import" />
     </ItemGroup>
     
-    <!-- 🔧 优化：修改触发时机为 Publish 之后，确保复制最新的发布文件 -->
     <Target Name="CopyToModsFolderOnPublish" AfterTargets="Publish">
         <Message Text="Copying .dll and manifest to mods folder." Importance="high" />
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />

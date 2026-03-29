@@ -1,14 +1,20 @@
 {
   "ADAPTIVE_STRIKE.title": "适应蛇咬",
-  "ADAPTIVE_STRIKE.description": "给予{PoisonPower:diff()}层[gold]中毒[/gold]。\n将这张牌的一张0{energyPrefix:energyIcons(1)}复制品添加到你的[gold]弃牌堆[/gold]。",
+  "ADAPTIVE_STRIKE.description": "给予{Damage:diff()}层[gold]中毒[/gold]。\n将这张牌的一张0{energyPrefix:energyIcons(1)}复制品添加到你的[gold]弃牌堆[/gold]。",
   "BELIEVE_IN_YOU.title": "咬着你！",
   "BELIEVE_IN_YOU.description": "给予另一名玩家{PoisonPower:diff()}层[gold]中毒[/gold]。",
   "HELLRAISER.title": "蛇咬狂徒",
   "HELLRAISER.description": "每当你抽到名字中有“打击”或“蛇咬”的牌时，对一名随机敌人打出这张牌。",
   "CRASH_LANDING.title": "蛇咬迫降",
-  "CRASH_LANDING.description": "对所有敌人造成{Damage:diff()}点伤害。\n用[red]蛇咬[/red]填满你的[gold]手牌[/gold]。",
-  "ORBIT.title": "环绕轨道",
-  "ORBIT.description": "你每花费{energyPrefix:energyIcons(4)}，\n就将一张[red]蛇咬[/red]添加到你的[gold]手牌[/gold]。",
+  "CRASH_LANDING.description": "对所有敌人造成{Damage:diff()}点伤害。\n用[gold]蛇咬[/gold]填满你的[gold]手牌[/gold]。",
   "PERFECTED_STRIKE.title": "完美蛇咬",
-  "PERFECTED_STRIKE.description": "给予{PoisonPower:diff()}层[gold]中毒[/gold]。\n你每有一张名字中含有“蛇咬”的牌，额外给予{ExtraDamage:diff()}层[gold]中毒[/gold]。"
+  "PERFECTED_STRIKE.description": "给予{CalculatedDamage:diff()}层[gold]中毒[/gold]。\n你每有一张名字中含有“蛇咬”的牌，额外给予{ExtraDamage:diff()}层[gold]中毒[/gold]。",
+  "SEEKING_EDGE.title": "追踪之咬",
+  "SEEKING_EDGE.description": "[gold]铸造[/gold]{Forge:diff()}。\n[gold]帝王之咬[/gold]和[gold]蛇咬[/gold]现在会对所有敌人造成伤害。",
+  "FAN_OF_KNIVES.title": "蛇扇",
+  "FAN_OF_KNIVES.description": "[gold]小咬[/gold]和[gold]蛇咬[/gold]现在会攻击所有敌人。\n将{Shivs:diff()}张[gold]小咬[/gold]添加到你的[gold]手牌[/gold]。",
+  "SHIV.title": "小咬",
+  "SHIV.description": "{FanOfKnivesAmount:cond:>0? 对所有敌人|}施加{Damage:diff()}层[gold]中毒[/gold]。",
+  "ORBIT.title": "蛇咬轨道",
+  "ORBIT.description": "你每打出[blue]4[/blue]张[gold]蛇咬[/gold]，就将[blue]1[/blue]张[gold]蛇咬[/gold]加入手牌。"
 }
