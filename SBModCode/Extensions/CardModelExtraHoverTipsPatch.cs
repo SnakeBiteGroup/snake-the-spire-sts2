@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace LOM.SBModCode.CardsFix;
+namespace SBMod.SBModCode.Extensions;
 
 [HarmonyPatch(typeof(CardModel), "ExtraHoverTips", MethodType.Getter)]
 public static class CardModelExtraHoverTipsPatch

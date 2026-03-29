@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace SBMod.SBModCode.CardsFix;
+namespace SBMod.SBModCode.Extensions;
 
 [HarmonyPatch]
 public static class CardImagePatch
@@ -19,7 +19,8 @@ public static class CardImagePatch
         typeof(CrashLanding),
         typeof(Hellraiser),
         typeof(Orbit),
-        typeof(PerfectedStrike)
+        typeof(PerfectedStrike),
+        typeof(MasterPlanner)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
