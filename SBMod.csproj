@@ -114,6 +114,7 @@
       <Content Include="SBMod\localization\zhs\cards.json" />
       <Content Include="images\packed\card_portraits\**\*.png" />
       <Content Include="images\packed\card_portraits\**\*.png.import" />
+      <Content Include="SBMod\localization\zhs\powers.json" />
     </ItemGroup>
     
     <Target Name="CopyToModsFolderOnPublish" AfterTargets="Publish">
