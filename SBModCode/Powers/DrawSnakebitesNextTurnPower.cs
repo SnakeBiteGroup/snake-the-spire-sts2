@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace SBMod.SBModCode.Powers;
 
-public sealed class SnakebiteGuidePower : PowerModel
+public sealed class DrawSnakebitesNextTurnPower : PowerModel
 {
     public override PowerType Type => PowerType.Buff;
 

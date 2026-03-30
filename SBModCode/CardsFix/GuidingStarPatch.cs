@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SBMod.SBModCode.Powers;
@@ -41,7 +36,7 @@ public static class GuidingStarPatch
         VfxCmd.PlayOnCreatureCenter(cardPlay.Target, "vfx/vfx_bite");
         await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
         
-        await PowerCmd.Apply<SnakebiteGuidePower>(instance.Owner.Creature, (int)instance.DynamicVars.Cards.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<DrawSnakebitesNextTurnPower>(instance.Owner.Creature, (int)instance.DynamicVars.Cards.BaseValue, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]
