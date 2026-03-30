@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using HarmonyLib;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;
@@ -21,15 +19,19 @@ public static class CardImagePatch
         typeof(Orbit),
         typeof(PerfectedStrike),
         typeof(MasterPlanner),
-        typeof(Barrage),
         typeof(SeekingEdge),
+        typeof(DoubleEnergy),
+        typeof(HiddenDaggers),
+        typeof(FanOfKnives),
+        typeof(Shiv),
+        typeof(StormOfSteel)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
     [HarmonyPostfix]
     static void HasPortraitPostfix(CardModel __instance, ref bool __result)
     {
-        if (!__result && ModifiedCards.Contains(__instance.GetType()))
+        if (ModifiedCards.Contains(__instance.GetType()))
         {
             var cardPoolTitle = __instance.Pool.Title.ToLowerInvariant();
             var cardIdEntry = __instance.Id.Entry.ToLowerInvariant();

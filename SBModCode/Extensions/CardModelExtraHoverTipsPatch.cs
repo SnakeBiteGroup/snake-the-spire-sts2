@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -12,9 +11,16 @@ public static class CardModelExtraHoverTipsPatch
 {
     static void Postfix(CardModel __instance, ref IEnumerable<IHoverTip> __result)
     {
-        if (__instance is AdaptiveStrike || __instance is Shiv || __instance is PerfectedStrike)
+        if (__instance is AdaptiveStrike 
+            || __instance is Shiv 
+            || __instance is PerfectedStrike
+            || __instance is SovereignBlade)
         {
             __result = new List<IHoverTip> { HoverTipFactory.FromPower<PoisonPower>() };
+        }
+        if (__instance is SpoilsMap)
+        {
+            __result =  HoverTipFactory.FromCardWithCardHoverTips<Snakebite>() ;
         }
     }
 }
