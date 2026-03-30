@@ -59,7 +59,6 @@ public static class StokePatch
             }
             await CardPileCmd.AddGeneratedCardsToCombat([card], PileType.Hand, addedByPlayer: true);
         }
-
     }
 }
 
