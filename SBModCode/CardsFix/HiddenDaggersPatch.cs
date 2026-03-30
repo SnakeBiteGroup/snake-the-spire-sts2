@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace LOM.SBModCode.CardsFix;
+namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch(typeof(HiddenDaggers))]
 public static class HiddenDaggersPatch

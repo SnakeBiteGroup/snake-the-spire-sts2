@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
-namespace LOM.SBModCode.CardsFix;
+namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch(typeof(SovereignBlade))]
 public static class SovereignBladePatch

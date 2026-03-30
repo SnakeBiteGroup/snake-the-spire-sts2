@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace LOM.SBModCode.PowersFix;
+namespace SBMod.SBModCode.PowersFix;
 
 [HarmonyPatch(typeof(RollingBoulderPower))]
 public static class RollingBoulderPowerPatch

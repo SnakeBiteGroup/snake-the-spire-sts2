@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace SBMod.SBModCode.Powersfix;
+namespace SBMod.SBModCode.PowersFix;
 
 [HarmonyPatch(typeof(HellraiserPower))]
 public static class HellraiserPowerPatch
