@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.ValueProps;
+using SBMod.SBModCode.Extensions;
 
 namespace SBMod.SBModCode.CardsFix;
 
@@ -25,7 +26,7 @@ public static class PerfectedStrikePatch
             if (vars[i] is CalculatedDamageVar calcVar)
             {
                 vars[i] = new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) => 
-                    card.Owner.PlayerCombatState.AllCards.Count((CardModel card) => card is Snakebite));
+                    SnakebiteHelper.CountAllSnakebites(card.Owner));
             }
         }
         __result = vars;
@@ -42,7 +43,7 @@ public static class PerfectedStrikePatch
     static async Task PatchOnPlay(PerfectedStrike instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        var snakebiteCount = instance.Owner.PlayerCombatState.AllCards.Count((CardModel c) => c is Snakebite);
+        var snakebiteCount = SnakebiteHelper.CountAllSnakebites(instance.Owner);
         int poisonAmount = (int)instance.DynamicVars.CalculatedDamage.BaseValue + (snakebiteCount * (int)instance.DynamicVars.ExtraDamage.BaseValue);
         await PowerCmd.Apply<PoisonPower>(cardPlay.Target, poisonAmount, instance.Owner.Creature, instance);
     }
