@@ -21,6 +21,7 @@ SBMod.pck
 *.uid
 *.import
 .idea/
+snake-the-spire-sts2.sln
 
 # 包相关目录
 .package/
