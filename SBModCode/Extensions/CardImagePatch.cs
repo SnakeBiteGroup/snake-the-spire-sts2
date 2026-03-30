@@ -22,7 +22,7 @@ public static class CardImagePatch
         typeof(PerfectedStrike),
         typeof(MasterPlanner),
         typeof(Barrage),
-        typeof(SeekingEdge)
+        typeof(SeekingEdge),
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
