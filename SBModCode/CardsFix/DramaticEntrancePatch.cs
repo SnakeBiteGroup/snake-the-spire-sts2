@@ -1,6 +1,5 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -19,15 +18,6 @@ public static class DramaticEntrancePatch
         __result = PatchOnPlay(__instance, choiceContext, cardPlay);
         return false;
     }
-
-    /// <summary>
-    /// 参考代码: 迷雾 和 闪亮登场
-    /// ref: Haze.cs & DramaticEntrance.cs
-    /// </summary>
-    /// <param name="instance"></param>
-    /// <param name="choiceContext"></param>
-    /// <param name="cardPlay"></param>
-    /// <returns></returns>
     static async Task PatchOnPlay(DramaticEntrance instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Attack", instance.Owner.Character.AttackAnimDelay);

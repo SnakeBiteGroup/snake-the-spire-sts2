@@ -1,0 +1,5 @@
+{
+  "PLASMA_ORB.title": "蛇咬",
+  "PLASMA_ORB.smartDescription": "[gold]被动：[/gold]回合开始时，\n获得{energyPrefix:energyIcons(1)}，将[blue]1[/blue]张[gold]蛇咬[/gold]添加至手牌。\n[gold]激发：[/gold]获得{energyPrefix:energyIcons(2)}，将[blue]1[/blue]张[gold]蛇咬[/gold]添加至手牌。\n蛇咬充能球不受[gold]集中[/gold]影响。",
+  "PLASMA_ORB.description": "蛇咬球：获得能量和[gold]蛇咬[/gold]。"
+}

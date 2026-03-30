@@ -118,9 +118,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include="images\powers\draw_snakebites_next_turn_power.png" />
       <Content Include="SBMod\localization\zhs\cards.json" />
       <Content Include="images\packed\card_portraits\**\*.png" />
       <Content Include="images\packed\card_portraits\**\*.png.import" />
+      <Content Include="SBMod\localization\zhs\combat_messages.json" />
+      <Content Include="SBMod\localization\zhs\orbs.json" />
       <Content Include="SBMod\localization\zhs\powers.json" />
       <Content Include="SBMod\localization\zhs\static_hover_tips.json" />
     </ItemGroup>
