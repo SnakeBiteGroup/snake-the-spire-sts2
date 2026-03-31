@@ -24,7 +24,7 @@
   "SOVEREIGN_BLADE.title": "君王之咬",
   "SOVEREIGN_BLADE.description": "{SeekingEdgeAmount:cond:>0? 对所有敌人|}施加{Damage:diff()}层[gold]中毒[/gold]{Repeat:choose(1):|{}次}。",
   "SPOILS_MAP.title": "藏蛇图",
-  "SPOILS_MAP.description": "在下一阶段的地图上，标记一个有{Gold:diff()}张[gold]蛇咬[/gold]的地点。",
+  "SPOILS_MAP.description": "在下一阶段的地图上，标记一个有{Gold:diff()}张[gold]蛇咬[/gold]的地点。能被多次[gold]升级[/gold]",
   "ROLLING_BOULDER.title": "滚蛇",
   "ROLLING_BOULDER.description": "在你的回合开始时，对所有敌人施加{RollingBoulderPower:diff()}层[gold]中毒[/gold]，然后将该层数增加{IncrementAmount:diff()}层。",
   "HIDDEN_DAGGERS.title": "隐秘蛇咬",
