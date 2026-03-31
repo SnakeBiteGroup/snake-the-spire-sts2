@@ -30,7 +30,6 @@ public static class CorrosiveWavePowerPatch
         if (card is Snakebite)
         {
             Traverse.Create(instance).Method("Flash").GetValue();
-            
             Creature? target = instance.CombatState.HittableEnemies.FirstOrDefault();
             if (target != null)
             {

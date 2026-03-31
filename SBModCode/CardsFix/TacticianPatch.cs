@@ -40,6 +40,7 @@ public static class TacticianPatch
     {
         __result = PatchOnPlay(__instance, choiceContext, cardPlay);
         return false;
+
     }
 
     static async Task PatchOnPlay(Tactician instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -66,5 +66,11 @@
   "PRIMAL_FORCE.title": "原蛇力量",
   "PRIMAL_FORCE.description": "将[gold]手牌[/gold]中的所有技能牌变化为[gold]{IfUpgraded:show:蛇咬+|蛇咬}[/gold]。",
   "STOKE.title": "添蛇",
-  "STOKE.description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n每[gold]消耗[/gold]一张牌，将一张{IfUpgraded:show:蛇咬+|蛇咬}加入你的[gold]手牌[/gold]。"
+  "STOKE.description": "[gold]消耗[/gold]所有[gold]手牌[/gold]。\n每[gold]消耗[/gold]一张牌，将一张{IfUpgraded:show:蛇咬+|蛇咬}加入你的[gold]手牌[/gold]。",
+  "BASH.title": "蛇击",
+  "BASH.description": "造成{Damage:diff()}点伤害。\n给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
+  "MOLTEN_FIST.title": "熔融之蛇",
+  "MOLTEN_FIST.description": "造成{Damage:diff()}点伤害。\n将该敌人身上的[gold]易蛇[/gold]层数翻倍。",
+  "THUNDERCLAP.description": "对所有敌人造成{Damage:diff()}点伤害，给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
+  "THUNDERCLAP.title": "蛇电霹雳"
 }
