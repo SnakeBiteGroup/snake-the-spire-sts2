@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.ValueProps;
 using SBMod.SBModCode.Extensions;
+using System.Reflection;
 
 namespace SBMod.SBModCode.CardsFix;
 
@@ -25,7 +26,7 @@ public static class PerfectedStrikePatch
         {
             if (vars[i] is CalculatedDamageVar calcVar)
             {
-                vars[i] = new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) => 
+                vars[i] = new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) =>
                     SnakebiteHelper.CountAllSnakebites(card.Owner));
             }
         }

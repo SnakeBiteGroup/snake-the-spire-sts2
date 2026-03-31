@@ -17,7 +17,7 @@ public static class PrimalForcePatch
     [HarmonyPostfix]
     static void ExtraHoverTipsPostfix(PrimalForce __instance, ref IEnumerable<IHoverTip> __result)
     {
-        __result = HoverTipFactory.FromCardWithCardHoverTips<Snakebite>();
+        __result = HoverTipFactory.FromCardWithCardHoverTips<Snakebite>(__instance.IsUpgraded);
     }
 
     [HarmonyPatch("OnPlay")]
