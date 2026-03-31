@@ -29,10 +29,9 @@ public static class StranglePowerPatch
         {
             Traverse.Create(instance).Method("Flash").GetValue();
             
-            foreach (var enemy in instance.CombatState.HittableEnemies)
             {
-                VfxCmd.PlayOnCreatureCenter(enemy, "vfx/vfx_bite");
-                await PowerCmd.Apply<PoisonPower>(enemy, instance.Amount, instance.Owner, null);
+                VfxCmd.PlayOnCreatureCenter(instance.Owner,  "vfx/vfx_bite");
+                await PowerCmd.Apply<PoisonPower>(instance.Owner, instance.Amount, instance.Owner, null);
             }
         }
     }
