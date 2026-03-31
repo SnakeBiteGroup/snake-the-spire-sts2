@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace SBMod.SBModCode.CardsFix;
 
@@ -17,7 +18,8 @@ public static class StranglePatch
     {
         __result = new List<DynamicVar>
         {
-            new PowerVar<StranglePower>(2m)
+            new DamageVar(8m, ValueProp.Move),
+            new PowerVar<PoisonPower>(2m)
         };
     }
 
@@ -31,15 +33,19 @@ public static class StranglePatch
 
     static async Task PatchOnPlay(Strangle instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Cast", instance.Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<StranglePower>(instance.Owner.Creature, instance.DynamicVars["StranglePower"].BaseValue, instance.Owner.Creature, instance);
+        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        await DamageCmd.Attack(instance.DynamicVars.Damage.BaseValue).FromCard(instance).Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
+        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars["PoisonPower"].BaseValue, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]
     [HarmonyPrefix]
     static bool OnUpgradePrefix(Strangle __instance)
     {
-        __instance.EnergyCost.UpgradeBy(-1);
+        __instance.DynamicVars.Damage.UpgradeValueBy(2m);
+        __instance.DynamicVars["PoisonPower"].UpgradeValueBy(1m);
         return false;
     }
 }
