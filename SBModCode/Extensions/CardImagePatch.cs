@@ -25,7 +25,8 @@ public static class CardImagePatch
         typeof(FanOfKnives),
         typeof(Shiv),
         typeof(StormOfSteel),
-        typeof(DramaticEntrance)
+        typeof(DramaticEntrance),
+        typeof(Strangle)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
