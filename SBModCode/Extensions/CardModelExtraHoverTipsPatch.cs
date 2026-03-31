@@ -14,11 +14,26 @@ public static class CardModelExtraHoverTipsPatch
         if (__instance is AdaptiveStrike 
             || __instance is Shiv 
             || __instance is PerfectedStrike
-            || __instance is SovereignBlade)
+            || __instance is SovereignBlade
+            || __instance is GuidingStar
+            || __instance is ShiningStrike
+            || __instance is DaggerThrow
+            || __instance is Radiate
+            || __instance is DramaticEntrance
+            || __instance is SerpentForm
+            || __instance is DaggerThrow)
+            
         {
             __result = new List<IHoverTip> { HoverTipFactory.FromPower<PoisonPower>() };
         }
-        if (__instance is SpoilsMap)
+        if (__instance is SpoilsMap
+            || __instance is GrandFinale
+            || __instance is Normality
+            || __instance is SerpentForm
+            || __instance is GuidingStar
+            || __instance is BulletTime
+            || __instance is DaggerThrow
+            || __instance is Radiate)
         {
             __result =  HoverTipFactory.FromCardWithCardHoverTips<Snakebite>() ;
         }
