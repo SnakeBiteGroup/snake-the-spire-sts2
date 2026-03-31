@@ -15,7 +15,7 @@ using SBMod.SBModCode.Powers;
 namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch(typeof(Thunderclap))]
-public static class ThunderClapPatch
+public static class ThunderclapPatch
 {
     [HarmonyPatch("ExtraHoverTips", MethodType.Getter)]
     [HarmonyPostfix]

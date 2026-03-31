@@ -3,6 +3,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SBMod.SBModCode.CardsFix;
 
@@ -24,7 +26,7 @@ public static class SpoilsMapPatch
         {
             cardsToAdd.Add(instance.Owner.RunState.CreateCard<Snakebite>(instance.Owner));
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Deck, addedByPlayer: true);
+        await CardPileCmd.Add(cardsToAdd, PileType.Deck);
         PlayerCmd.CompleteQuest(instance);
         await CardPileCmd.RemoveFromDeck(instance);
         return 600;

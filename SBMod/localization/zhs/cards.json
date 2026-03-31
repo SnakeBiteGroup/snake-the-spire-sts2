@@ -61,8 +61,8 @@
   "SUMMON_FORTH.description": "无论[gold]君王之咬[/gold]在哪里，将其加入手牌。",
   "NORMALITY.title": "蛇庸",
   "NORMALITY.description": "不能被打出。在你手牌中时，你在此回合无法打出3张以上牌且仅可打出[gold]蛇咬[/gold]牌。",
-  "GRAND_FINALE.title": "华丽收场",
-  "GRAND_FINALE.description": "只有当你的[gold]抽牌堆[/gold]中只有[gold]蛇咬[/gold]时才能打出。对所有敌人造成{PoisonPower:diff()}点伤害。",
+  "GRAND_FINALE.title": "华丽蛇咬",
+  "GRAND_FINALE.description": "只有当你的[gold]抽牌堆[/gold]中没有[gold]蛇咬[/gold]以外的卡牌时才能打出。对所有敌人施加{PoisonPower:diff()}层[gold]中毒[/gold]。",
   "PRIMAL_FORCE.title": "原蛇力量",
   "PRIMAL_FORCE.description": "将[gold]手牌[/gold]中的所有技能牌变化为[gold]{IfUpgraded:show:蛇咬+|蛇咬}[/gold]。",
   "STOKE.title": "添蛇",
@@ -72,5 +72,11 @@
   "MOLTEN_FIST.title": "熔融之蛇",
   "MOLTEN_FIST.description": "造成{Damage:diff()}点伤害。\n将该敌人身上的[gold]易蛇[/gold]层数翻倍。",
   "THUNDERCLAP.description": "对所有敌人造成{Damage:diff()}点伤害，给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
-  "THUNDERCLAP.title": "蛇电霹雳"
+  "THUNDERCLAP.title": "蛇电霹雳",
+  "TREMBLE.description": "给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
+  "TREMBLE.title": "蛇栗",
+  "BULLY.description": "造成{CalculatedDamage:diff()}点伤害。\n该敌人身上每有一层[gold]易蛇[/gold]就额外造成{ExtraDamage:diff()}点伤害。",
+  "BULLY.title": "蛇凌",
+  "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。",
+  "DISMANTLE.title": "蛇卸"
 }
