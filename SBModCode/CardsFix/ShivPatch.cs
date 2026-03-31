@@ -5,12 +5,28 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models;
 
 namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch(typeof(Shiv))]
 public static class ShivPatch
 {
+    [HarmonyPatch(MethodType.Constructor)]
+    [HarmonyPostfix]
+    static void ConstructorPostfix(Shiv __instance)
+    {
+        var typeProperty = AccessTools.Property(typeof(CardModel), "Type");
+        if (typeProperty?.SetMethod != null)
+        {
+            typeProperty.SetValue(__instance, CardType.Skill);
+            return;
+        }
+
+        var typeField = AccessTools.Field(typeof(CardModel), "<Type>k__BackingField");
+        typeField?.SetValue(__instance, CardType.Skill);
+    }
+    
     [HarmonyPatch("OnPlay")]
     [HarmonyPrefix]
     static bool OnPlayPrefix(Shiv __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
