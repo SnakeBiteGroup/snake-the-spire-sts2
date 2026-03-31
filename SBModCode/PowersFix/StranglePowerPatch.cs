@@ -29,19 +29,10 @@ public static class StranglePowerPatch
         {
             Traverse.Create(instance).Method("Flash").GetValue();
             
-            foreach (var enemy in instance.CombatState.HittableEnemies)
             {
-                VfxCmd.PlayOnCreatureCenter(enemy, "vfx/vfx_bite");
-                await PowerCmd.Apply<PoisonPower>(enemy, instance.Amount, instance.Owner, null);
+                VfxCmd.PlayOnCreatureCenter(instance.Owner,  "vfx/vfx_bite");
+                await PowerCmd.Apply<PoisonPower>(instance.Owner, instance.Amount, instance.Owner, null);
             }
         }
-    }
-
-    [HarmonyPatch("AfterTurnEnd")]
-    [HarmonyPrefix]
-    static bool AfterTurnEndPrefix(StranglePower __instance, PlayerChoiceContext choiceContext, CombatSide side, ref Task __result)
-    {
-        __result = PowerCmd.Remove(__instance);
-        return false;
     }
 }
