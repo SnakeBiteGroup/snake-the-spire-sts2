@@ -16,13 +16,6 @@ namespace SBMod.SBModCode.CardsFix;
 [HarmonyPatch(typeof(Stoke))]
 public static class StokePatch
 {
-    [HarmonyPatch("ExtraHoverTips", MethodType.Getter)]
-    [HarmonyPostfix]
-    static void ExtraHoverTipsPostfix(PrimalForce __instance, ref IEnumerable<IHoverTip> __result)
-    {
-        __result = HoverTipFactory.FromCardWithCardHoverTips<Snakebite>(__instance.IsUpgraded);
-    }
-    
     [HarmonyPatch("OnPlay")]
     [HarmonyPrefix]
     static bool OnPlayPrefix(Stoke __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)

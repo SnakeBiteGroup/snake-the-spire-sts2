@@ -44,8 +44,10 @@ public sealed class EasySnakePower : PowerModel
     
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
-
+        if (side == CombatSide.Enemy)
+        {
             await PowerCmd.TickDownDuration(this);
-       
+        }
+
     }
 }
