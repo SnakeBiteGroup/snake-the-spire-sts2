@@ -56,6 +56,13 @@ public static class SovereignBladePatch
 
                 return Task.CompletedTask;
             }).WithHitFx("vfx/vfx_giant_horizontal_slash", null, "slash_attack.mp3");
+
+            await attack.Execute(choiceContext);
+
+            foreach (Creature hittableEnemy in instance.CombatState.HittableEnemies)
+            {
+                await PowerCmd.Apply<PoisonPower>(hittableEnemy, attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage), instance.Owner.Creature, instance);
+            }
         }
         else
         {
@@ -72,11 +79,13 @@ public static class SovereignBladePatch
                 return Task.CompletedTask;
             }).WithHitVfxNode((Creature t) => NBigSlashVfx.Create(t))
                 .WithHitVfxNode((Creature t) => NBigSlashImpactVfx.Create(t));
+
+            await attack.Execute(choiceContext);
+
+            await PowerCmd.Apply<PoisonPower>(cardPlay.Target, attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage), instance.Owner.Creature, instance);
+
         }
 
-        await attack.Execute(choiceContext);
-
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage), instance.Owner.Creature, instance);
 
 
         ParryPower power = instance.Owner.Creature.GetPower<ParryPower>();
