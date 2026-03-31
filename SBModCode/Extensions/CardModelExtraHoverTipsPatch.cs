@@ -21,7 +21,10 @@ public static class CardModelExtraHoverTipsPatch
             || __instance is Radiate
             || __instance is DramaticEntrance
             || __instance is SerpentForm
-            || __instance is DaggerThrow)
+            || __instance is DaggerThrow
+            || __instance is Flechettes
+            || __instance is GrandFinale
+            )
             
         {
             __result = new List<IHoverTip> { HoverTipFactory.FromPower<PoisonPower>() };
@@ -33,7 +36,9 @@ public static class CardModelExtraHoverTipsPatch
             || __instance is GuidingStar
             || __instance is BulletTime
             || __instance is DaggerThrow
-            || __instance is Radiate)
+            || __instance is Radiate
+            || __instance is Flechettes
+            )
         {
             __result =  HoverTipFactory.FromCardWithCardHoverTips<Snakebite>() ;
         }

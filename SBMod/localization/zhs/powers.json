@@ -1,10 +1,10 @@
 {
-  "ORBIT_POWER.title": "蛇咬轨道",
+  "ORBIT_POWER.title": "蛇绕轨道",
   "ORBIT_POWER.description": "你每打出[blue]4[/blue]张[gold]蛇咬[/gold]，就将[blue]1[/blue]张[gold]蛇咬[/gold]加入手牌。",
   "ORBIT_POWER.smartDescription": "你每打出一张[blue]4[/blue]张[gold]蛇咬[/gold]，就将[blue]1[/blue]张[gold]蛇咬[/gold]加入手牌。",
   "MASTER_PLANNER_POWER.description": "当你打出技能牌时，该牌变化为[gold]蛇咬[/gold]。若升级过，则变化为[gold]蛇咬+[/gold]",
   "MASTER_PLANNER_POWER.title": "蛇咬专家",
-  "ROLLING_BOULDER_POWER.title": "毒蛇滚石",
+  "ROLLING_BOULDER_POWER.title": "滚蛇",
   "ROLLING_BOULDER_POWER.description": "在你的回合开始时，对所有敌人施加[blue]5[/blue]层[gold]中毒[/gold]，然后将此层数增加[blue]5[/blue]。",
   "ROLLING_BOULDER_POWER.smartDescription": "在你的回合开始时，对所有敌人施加[blue]{Amount}[/blue]层[gold]中毒[/gold]，然后将此层数增加[blue]{Damage}[/blue]。",
   "SNAKEBITE_GUIDE_POWER.smartDescription": "下回合开始时，将[blue]{Cards}[/blue]张[gold]蛇咬[/gold]从抽牌堆移到手牌。若抽牌堆不足，则从弃牌堆补充。",
