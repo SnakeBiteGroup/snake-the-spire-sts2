@@ -38,7 +38,7 @@
   "FLECHETTES.title": "蛇镖",
   "FLECHETTES.description": "手牌每有一张[gold]蛇咬[/gold]，便施加{PoisonPower:diff()}层[gold]中毒[/gold]。",
   "STRANGLE.title": "紧咬",
-  "STRANGLE.description": "你在这个回合内每出一张牌，对该名敌人施加{StranglePower:diff()}层[gold]中毒[/gold]。",
+  "STRANGLE.description": "造成{Damage:diff()}点伤害。\n你在这个回合内每出一张牌，对该名敌人施加{StranglePower:diff()}层[gold]中毒[/gold]。",
   "CORROSIVE_WAVE.title": "蛇咬波",
   "CORROSIVE_WAVE.description": "打出此牌后，你在这回合每抽到一张[gold]蛇咬[/gold]，就将其对随机一名敌人打出。",
   "REFLEX.title": "蛇咬反应",
@@ -71,12 +71,13 @@
   "BASH.description": "造成{Damage:diff()}点伤害。\n给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "MOLTEN_FIST.title": "熔融之蛇",
   "MOLTEN_FIST.description": "造成{Damage:diff()}点伤害。\n将该敌人身上的[gold]易蛇[/gold]层数翻倍。",
-  "THUNDERCLAP.description": "对所有敌人造成{Damage:diff()}点伤害，给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "THUNDERCLAP.title": "蛇电霹雳",
-  "TREMBLE.description": "给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
+  "THUNDERCLAP.description": "对所有敌人造成{Damage:diff()}点伤害，给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "TREMBLE.title": "蛇栗",
-  "BULLY.description": "造成{CalculatedDamage:diff()}点伤害。\n该敌人身上每有一层[gold]易蛇[/gold]就额外造成{ExtraDamage:diff()}点伤害。",
+  "TREMBLE.description": "给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "BULLY.title": "蛇凌",
-  "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。",
-  "DISMANTLE.title": "蛇卸"
+  "BULLY.description": "造成{CalculatedDamage:diff()}点伤害。\n该敌人身上每有一层[gold]易蛇[/gold]就额外造成{ExtraDamage:diff()}点伤害。",
+  "DISMANTLE.title": "蛇卸",
+  "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。"
+  
 }
