@@ -13,5 +13,7 @@
   "EASY_SNAKE_POWER.title": "易蛇",
   "DRAW_SNAKEBITES_NEXT_TURN_POWER.title": "下回合蛇咬",
   "DRAW_SNAKEBITES_NEXT_TURN_POWER.description": "在你的下回合开始时，额外抽[blue]1[/blue]张[gold]蛇咬[/gold]。",
-  "DRAW_SNAKEBITES_NEXT_TURN_POWER.smartDescription": "在你的下回合开始时，额外抽[blue]{Amount}[/blue]张[gold]蛇咬[/gold]。"
+  "DRAW_SNAKEBITES_NEXT_TURN_POWER.smartDescription": "在你的下回合开始时，额外抽[blue]{Amount}[/blue]张[gold]蛇咬[/gold]。",
+  "STRANGLE_POWER.title": "紧咬",
+  "STRANGLE_POWER.smartDescription": "本回合，你每次打出牌时，对{OnPlayer:自身|这名敌人}施加[blue]{Amount}[/blue]层[gold]中毒[/gold]。"
 }

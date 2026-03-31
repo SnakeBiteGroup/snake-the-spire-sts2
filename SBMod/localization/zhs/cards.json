@@ -71,12 +71,13 @@
   "BASH.description": "造成{Damage:diff()}点伤害。\n给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "MOLTEN_FIST.title": "熔融之蛇",
   "MOLTEN_FIST.description": "造成{Damage:diff()}点伤害。\n将该敌人身上的[gold]易蛇[/gold]层数翻倍。",
-  "THUNDERCLAP.description": "对所有敌人造成{Damage:diff()}点伤害，给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "THUNDERCLAP.title": "蛇电霹雳",
-  "TREMBLE.description": "给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
+  "THUNDERCLAP.description": "对所有敌人造成{Damage:diff()}点伤害，给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "TREMBLE.title": "蛇栗",
-  "BULLY.description": "造成{CalculatedDamage:diff()}点伤害。\n该敌人身上每有一层[gold]易蛇[/gold]就额外造成{ExtraDamage:diff()}点伤害。",
+  "TREMBLE.description": "给予{VulnerablePower:diff()}层[gold]易蛇[/gold]。",
   "BULLY.title": "蛇凌",
-  "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。",
-  "DISMANTLE.title": "蛇卸"
+  "BULLY.description": "造成{CalculatedDamage:diff()}点伤害。\n该敌人身上每有一层[gold]易蛇[/gold]就额外造成{ExtraDamage:diff()}点伤害。",
+  "DISMANTLE.title": "蛇卸",
+  "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。"
+  
 }
