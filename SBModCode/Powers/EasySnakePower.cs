@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.ValueProps;
+using SBMod.SBModCode.Extensions;
 
 
 namespace SBMod.SBModCode.Powers;
@@ -29,7 +30,7 @@ public sealed class EasySnakePower : PowerModel
     ];
     public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
-        if (power is PoisonPower && cardSource is Snakebite)
+        if (power is PoisonPower && SnakebiteHelper.IsSnakebiteCard(cardSource))
         {
             var easySnake = target?.GetPower<EasySnakePower>();
             if (easySnake != null)
@@ -40,9 +41,9 @@ public sealed class EasySnakePower : PowerModel
         }
         return amount;
     }
+    
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
-
         if (side == CombatSide.Enemy)
         {
             await PowerCmd.TickDownDuration(this);
