@@ -35,12 +35,4 @@ public static class StranglePowerPatch
             }
         }
     }
-
-    [HarmonyPatch("AfterTurnEnd")]
-    [HarmonyPrefix]
-    static bool AfterTurnEndPrefix(StranglePower __instance, PlayerChoiceContext choiceContext, CombatSide side, ref Task __result)
-    {
-        __result = PowerCmd.Remove(__instance);
-        return false;
-    }
 }
