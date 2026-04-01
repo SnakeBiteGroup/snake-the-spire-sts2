@@ -14,14 +14,13 @@ namespace SBMod.SBModCode.CardsFix;
 [HarmonyPatch(typeof(Barrage))]
 public static class BarragePatch
 {
-    
     [HarmonyPatch("ExtraHoverTips", MethodType.Getter)]
     [HarmonyPostfix]
-    static void ExtraHoverTipsPostfix(BelieveInYou __instance, ref IEnumerable<IHoverTip> __result)
+    static void ExtraHoverTipsPostfix(Barrage __instance, ref IEnumerable<IHoverTip> __result)
     {
-        __result = new List<IHoverTip> { HoverTipFactory.FromPower<PoisonPower>() };
+        __result = HoverTipFactory.FromCardWithCardHoverTips<Snakebite>();
     }
-    
+
     [HarmonyPatch("CanonicalVars", MethodType.Getter)]
     [HarmonyPostfix]
     static void CanonicalVarsPostfix(Barrage __instance, ref IEnumerable<DynamicVar> __result)
@@ -52,10 +51,10 @@ public static class BarragePatch
     static async Task PatchOnPlay(Barrage instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        var handCards = CardPile.GetCards(instance.Owner, PileType.Hand);
-        int snakebiteCount = handCards.Count(card => card is Snakebite);
-        var totalPoison = instance.DynamicVars.Damage.BaseValue * snakebiteCount;
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, totalPoison, instance.Owner.Creature, instance);
+        await DamageCmd.Attack(instance.DynamicVars.Damage.BaseValue).WithHitCount((int)((CalculatedVar)instance.DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target)).FromCard(instance)
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(choiceContext);
     }
 }
 

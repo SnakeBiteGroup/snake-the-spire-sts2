@@ -33,7 +33,19 @@ public static class CardImagePatch
         typeof(Tremble),
         typeof(Thunderclap),
         typeof(Dismantle),
-        typeof(SpoilsMap)
+        typeof(SpoilsMap),
+        typeof(Normality),
+        typeof(PrimalForce),
+        typeof(Stoke),
+        typeof(GuidingStar),
+        typeof(Radiate),
+        typeof(ShiningStrike),
+        typeof(SummonForth),
+        typeof(BulletTime),
+        typeof(CorrosiveWave),
+        typeof(Flechettes),
+        typeof(GrandFinale),
+        typeof(KnifeTrap)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
