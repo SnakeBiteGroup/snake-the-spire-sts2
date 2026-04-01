@@ -62,7 +62,7 @@
   "NORMALITY.title": "蛇庸",
   "NORMALITY.description": "你在本回合不能打出超过3张牌，并且只能打出名字中有“蛇咬”的牌。",
   "GRAND_FINALE.title": "华丽蛇场",
-  "GRAND_FINALE.description": "只有当你的[gold]抽牌堆[/gold]中只有[gold]蛇咬[/gold]时才能打出。对所有敌人造成{PoisonPower:diff()}点伤害。",
+  "GRAND_FINALE.description": "只有当你的[gold]抽牌堆[/gold]中没有[gold]蛇咬[/gold]以外的卡牌时才能打出。对所有敌人施加{PoisonPower:diff()}层[gold]中毒[/gold]。",
   "PRIMAL_FORCE.title": "原蛇力量",
   "PRIMAL_FORCE.description": "将[gold]手牌[/gold]中的所有技能牌变化为[gold]{IfUpgraded:show:蛇咬+|蛇咬}[/gold]。",
   "STOKE.title": "添蛇",
