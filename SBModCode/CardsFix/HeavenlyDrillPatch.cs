@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -15,7 +14,7 @@ public class HeavenlyDrillPatch
 {
     [HarmonyPatch("CanonicalVars", MethodType.Getter)]
     [HarmonyPostfix]
-    static void CanonicalVarsPostfix(GrandFinale __instance, ref IEnumerable<DynamicVar> __result)
+    static void CanonicalVarsPostfix(HeavenlyDrill __instance, ref IEnumerable<DynamicVar> __result)
     {
         __result = new List<DynamicVar>
         {
@@ -27,13 +26,13 @@ public class HeavenlyDrillPatch
     
     [HarmonyPatch("OnPlay")]
     [HarmonyPrefix]
-    static bool OnPlayPrefix(Flechettes __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
+    static bool OnPlayPrefix(HeavenlyDrill __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
     {
         __result = PatchOnPlay(__instance, choiceContext, cardPlay);
         return true;
     }
 
-    static async Task PatchOnPlay(Flechettes instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    static async Task PatchOnPlay(HeavenlyDrill instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int num = instance.ResolveEnergyXValue();
         if (num >= instance.DynamicVars.Energy.IntValue)
@@ -50,7 +49,7 @@ public class HeavenlyDrillPatch
 
     [HarmonyPatch("OnUpgrade")]
     [HarmonyPrefix]
-    static bool OnUpgradePrefix(AdaptiveStrike __instance)
+    static bool OnUpgradePrefix(HeavenlyDrill __instance)
     {
         __instance.DynamicVars.Poison.UpgradeValueBy(2m);
         return true;
