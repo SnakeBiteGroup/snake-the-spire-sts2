@@ -16,13 +16,6 @@ public static class ShiningStrikePatch
     [HarmonyPostfix]
     static void ConstructorPostfix(ShiningStrike __instance)
     {
-        var typeProperty = AccessTools.Property(typeof(CardModel), "Type");
-        if (typeProperty?.SetMethod != null)
-        {
-            typeProperty.SetValue(__instance, CardType.Skill);
-            return;
-        }
-
         var typeField = AccessTools.Field(typeof(CardModel), "<Type>k__BackingField");
         typeField?.SetValue(__instance, CardType.Skill);
     }
