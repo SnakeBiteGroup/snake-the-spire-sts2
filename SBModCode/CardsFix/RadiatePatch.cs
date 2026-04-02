@@ -15,6 +15,14 @@ namespace SBMod.SBModCode.CardsFix;
 [HarmonyPatch(typeof(Radiate))]
 public static class RadiatePatch
 {
+    [HarmonyPatch(MethodType.Constructor)]
+    [HarmonyPostfix]
+    static void ConstructorPostfix(Radiate __instance)
+    {
+        var typeField = AccessTools.Field(typeof(CardModel), "<Type>k__BackingField");
+        typeField?.SetValue(__instance, CardType.Skill);
+    }
+
     [HarmonyPatch("CanonicalVars", MethodType.Getter)]
     [HarmonyPostfix]
     static void CanonicalVarsPostfix(Radiate __instance, ref IEnumerable<DynamicVar> __result)

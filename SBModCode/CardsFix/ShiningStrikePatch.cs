@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
@@ -11,6 +12,13 @@ namespace SBMod.SBModCode.CardsFix;
 [HarmonyPatch(typeof(ShiningStrike))]
 public static class ShiningStrikePatch
 {
+     [HarmonyPatch(MethodType.Constructor)]
+    [HarmonyPostfix]
+    static void ConstructorPostfix(ShiningStrike __instance)
+    {
+        var typeField = AccessTools.Field(typeof(CardModel), "<Type>k__BackingField");
+        typeField?.SetValue(__instance, CardType.Skill);
+    }
     [HarmonyPatch("CanonicalVars", MethodType.Getter)]
     [HarmonyPostfix]
     static void CanonicalVarsPostfix(ShiningStrike __instance, ref IEnumerable<DynamicVar> __result)
