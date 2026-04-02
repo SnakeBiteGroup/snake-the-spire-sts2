@@ -3,29 +3,25 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace SBMod.SBModCode.CardsFix;
 
 [HarmonyPatch(typeof(HeavenlyDrill))]
 public class HeavenlyDrillPatch
 {
-    [HarmonyPostfix]
-    [HarmonyPatch(MethodType.Constructor)]
-    static void PostfixConstructor(HeavenlyDrill __instance)
-    {
-        __instance.AddKeyword(CardKeyword.Retain);
-        __instance.DynamicVars.Damage.BaseValue = 4m;
-    }
-    
     [HarmonyPatch("CanonicalVars", MethodType.Getter)]
     [HarmonyPostfix]
     static void CanonicalVarsPostfix(GrandFinale __instance, ref IEnumerable<DynamicVar> __result)
     {
         __result = new List<DynamicVar>
         {
-            new PowerVar<PoisonPower>(4m)
+            new DamageVar(4m, ValueProp.Move),
+            new PowerVar<PoisonPower>(4m),
+            new EnergyVar(4)
         };
     }
     
