@@ -24,6 +24,7 @@ public static class CardModelExtraHoverTipsPatch
             || __instance is DaggerThrow
             || __instance is Flechettes
             || __instance is GrandFinale
+            || __instance is HeavenlyDrill
             )
             
         {

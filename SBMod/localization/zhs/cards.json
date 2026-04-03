@@ -78,6 +78,7 @@
   "BULLY.title": "蛇凌",
   "BULLY.description": "造成{CalculatedDamage:diff()}点伤害。\n该敌人身上每有一层[gold]易蛇[/gold]就额外造成{ExtraDamage:diff()}点伤害。",
   "DISMANTLE.title": "蛇卸",
-  "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。"
-  
+  "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。",
+  "HEAVENLY_DRILL.title": "天际蛇咬",
+  "HEAVENLY_DRILL.description": "造成{Damage:diff()}点伤害并给予{PoisonPower:diff()}层[gold]中毒[/gold]X次。\n如果X的最终数值为{Energy:diff()}或以上，则将X的数值翻倍。"
 }
