@@ -38,7 +38,7 @@
   "FLECHETTES.title": "蛇镖",
   "FLECHETTES.description": "[gold]手牌[gold]中每有一张[gold]蛇咬[/gold]，给予{PoisonPower:diff()}层[gold]中毒[/gold]。",
   "STRANGLE.title": "紧咬",
-  "STRANGLE.description": "造成{Damage:diff()}点伤害。\n你在这个回合内每出一张牌，该名敌人都会被给予[blue]{PoisonPower:diff()}[/blue]层[gold]中毒[/gold]。",
+  "STRANGLE.description": "造成{Damage:diff()}点伤害。\n你在这个回合内每出一张牌，该名敌人都会被给予[blue]{StranglePower:diff()}[/blue]层[gold]中毒[/gold]。",
   "CORROSIVE_WAVE.title": "蛇咬波",
   "CORROSIVE_WAVE.description": "打出此牌后，你在这回合每抽到一张[gold]蛇咬[/gold]，就将其对随机一名敌人打出。",
   "REFLEX.title": "蛇咬反应",
