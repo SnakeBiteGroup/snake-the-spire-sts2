@@ -81,14 +81,14 @@
   "DISMANTLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]易蛇[/gold]状态，则攻击两次。",
   "HEAVENLY_DRILL.title": "天际蛇咬",
   "HEAVENLY_DRILL.description": "造成{Damage:diff()}点伤害并给予{PoisonPower:diff()}层[gold]中毒[/gold]X次。\n如果X的最终数值为{Energy:diff()}或以上，则将X的数值翻倍。",
-  "BLADE_DANCE.title": "蛇咬之舞",
+  "BLADE_DANCE.title": "蛇刃之舞",
   "BLADE_DANCE.description": "添加{Cards:diff()}张[gold]小咬[/gold]到你的[gold]手牌[/gold]。",
   "LEADING_STRIKE.title": "先制蛇咬",
   "LEADING_STRIKE.description": "造成{Damage:diff()}点伤害。\n将{Shivs:diff()}张[gold]小咬[/gold]加入你的[gold]手牌[/gold]。",
-  "CLOAK_AND_DAGGER.title": "斗篷与蛇咬",
+  "CLOAK_AND_DAGGER.title": "斗篷与蛇首",
   "CLOAK_AND_DAGGER.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n将{Cards:diff()}张[gold]小咬[/gold]添加到你的[gold]手牌[/gold]。",
-  "UP_MY_SLEEVE.title": "袖里蛇咬",
+  "UP_MY_SLEEVE.title": "蛇里乾坤",
   "UP_MY_SLEEVE.description": "将{Cards:diff()}张[gold]小咬[/gold]加入你的[gold]手牌[/gold]。\n这张牌的耗能减少1。",
-  "PHANTOM_BLADES.title": "幻影蛇咬",
+  "PHANTOM_BLADES.title": "幻影之咬",
   "PHANTOM_BLADES.description": "[gold]小咬[/gold]获得[gold]保留[/gold]。\n你在每回合打出的第一张[gold]小咬[/gold]额外造成{PhantomBladesPower:diff()}点伤害。"
 }
