@@ -11,8 +11,8 @@ public static class CardModelExtraHoverTipsPatch
 {
     static void Postfix(CardModel __instance, ref IEnumerable<IHoverTip> __result)
     {
-        if (__instance is AdaptiveStrike 
-            || __instance is Shiv 
+        if (__instance is AdaptiveStrike
+            || __instance is Shiv
             || __instance is PerfectedStrike
             || __instance is SovereignBlade
             || __instance is GuidingStar
@@ -21,12 +21,12 @@ public static class CardModelExtraHoverTipsPatch
             || __instance is Radiate
             || __instance is DramaticEntrance
             || __instance is SerpentForm
-            || __instance is DaggerThrow
             || __instance is Flechettes
             || __instance is GrandFinale
             || __instance is HeavenlyDrill
+            || __instance is Strangle
             )
-            
+
         {
             __result = new List<IHoverTip> { HoverTipFactory.FromPower<PoisonPower>() };
         }
@@ -41,7 +41,7 @@ public static class CardModelExtraHoverTipsPatch
             || __instance is Flechettes
             )
         {
-            __result =  HoverTipFactory.FromCardWithCardHoverTips<Snakebite>() ;
+            __result = HoverTipFactory.FromCardWithCardHoverTips<Snakebite>();
         }
     }
 }
