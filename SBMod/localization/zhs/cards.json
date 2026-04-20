@@ -90,5 +90,19 @@
   "UP_MY_SLEEVE.title": "蛇里乾坤",
   "UP_MY_SLEEVE.description": "将{Cards:diff()}张[gold]小咬[/gold]加入你的[gold]手牌[/gold]。\n这张牌的耗能减少1。",
   "PHANTOM_BLADES.title": "幻影之咬",
-  "PHANTOM_BLADES.description": "[gold]小咬[/gold]获得[gold]保留[/gold]。\n你在每回合打出的第一张[gold]小咬[/gold]额外造成{PhantomBladesPower:diff()}点伤害。"
+  "PHANTOM_BLADES.description": "[gold]小咬[/gold]获得[gold]保留[/gold]。\n你在每回合打出的第一张[gold]小咬[/gold]额外造成{PhantomBladesPower:diff()}点伤害。",
+  "STRIKE_IRONCLAD.title": "蛇咬打击",
+  "STRIKE_IRONCLAD.description": "造成{Damage:diff()}点伤害。\n给予{PoisonPower:diff()}层[gold]中毒[/gold]。",
+  "STRIKE_SILENT.title": "蛇咬打击",
+  "STRIKE_SILENT.description": "造成{Damage:diff()}点伤害。\n给予{PoisonPower:diff()}层[gold]中毒[/gold]。",
+  "STRIKE_DEFECT.title": "蛇咬打击",
+  "STRIKE_DEFECT.description": "造成{Damage:diff()}点伤害。\n给予{PoisonPower:diff()}层[gold]中毒[/gold]。",
+  "STRIKE_REGENT.title": "蛇咬打击",
+  "STRIKE_REGENT.description": "造成{Damage:diff()}点伤害。\n给予{PoisonPower:diff()}层[gold]中毒[/gold]。",
+  "STRIKE_NECROBINDER.title": "蛇咬打击",
+  "STRIKE_NECROBINDER.description": "造成{Damage:diff()}点伤害。\n给予{PoisonPower:diff()}层[gold]中毒[/gold]。",
+  "BYRDONIS_EGG.title": "多尼斯异蛇蛋",
+  "BYRDONIS_EGG.description": "能在[gold]休息处[/gold]被孵化。",
+  "BYRD_SWOOP.title": "异蛇扑击",
+  "BYRD_SWOOP.description": "造成{Damage:diff()}点伤害。\n给予{PoisonPower:diff()}层[gold]中毒[/gold]。"
 }
