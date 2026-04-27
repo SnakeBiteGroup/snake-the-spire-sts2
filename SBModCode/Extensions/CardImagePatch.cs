@@ -49,7 +49,12 @@ public static class CardImagePatch
         typeof(BladeDance),
         typeof(LeadingStrike),
         typeof(CloakAndDagger),
-        typeof(HeavenlyDrill)
+        typeof(HeavenlyDrill),
+        typeof(PhantomBlades),
+        typeof(UpMySleeve),
+        typeof(StrikeSilent),
+        typeof(DaggerThrow),
+        typeof(FlickFlack)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
