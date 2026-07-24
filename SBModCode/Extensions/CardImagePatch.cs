@@ -64,7 +64,11 @@ public static class CardImagePatch
         typeof(PreciseCut),
         typeof(Predator),
         typeof(Ricochet),
-        typeof(Survivor)
+        typeof(Survivor),
+        typeof(BouncingFlask),
+        typeof(Finisher),
+        typeof(HandTrick),
+        typeof(ShadowStep)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
