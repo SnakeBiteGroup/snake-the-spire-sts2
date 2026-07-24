@@ -45,23 +45,20 @@ public static class SovereignBladePatch
             {
                 NSovereignBladeVfx vfxNode = SovereignBlade.GetVfxNode(instance.Owner, instance);
                 IReadOnlyList<Creature> hittableEnemies = instance.CombatState.HittableEnemies;
-                if (hittableEnemies.Count > 0)
+                if (hittableEnemies.Count <= 0)
                 {
-                    NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(hittableEnemies[0]);
-                    if (vfxNode != null && nCreature != null)
-                    {
-                        vfxNode.Attack(nCreature.VfxSpawnPosition);
-                    }
+                    return Task.CompletedTask;
                 }
 
                 return Task.CompletedTask;
             }).WithHitFx("vfx/vfx_giant_horizontal_slash", null, "slash_attack.mp3");
+            
 
             await attack.Execute(choiceContext);
 
             foreach (Creature hittableEnemy in instance.CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<PoisonPower>(hittableEnemy, attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage), instance.Owner.Creature, instance);
+               // await PowerCmd.Apply<PoisonPower>(hittableEnemy, attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage), instance.Owner.Creature, instance);
             }
         }
         else
@@ -82,7 +79,7 @@ public static class SovereignBladePatch
 
             await attack.Execute(choiceContext);
 
-            await PowerCmd.Apply<PoisonPower>(cardPlay.Target, attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage), instance.Owner.Creature, instance);
+           // await PowerCmd.Apply<PoisonPower>(cardPlay.Target, attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage), instance.Owner.Creature, instance);
 
         }
 
@@ -91,7 +88,7 @@ public static class SovereignBladePatch
         ParryPower power = instance.Owner.Creature.GetPower<ParryPower>();
         if (power != null)
         {
-            await power.AfterSovereignBladePlayed(instance.Owner.Creature, null);
+            //await power.AfterSovereignBladePlayed(instance.Owner.Creature, null);
         }
     }
 }

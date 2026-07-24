@@ -42,7 +42,7 @@ public class HeavenlyDrillPatch
         for (int i = 0; i < num; i++)
         {
             VfxCmd.PlayOnCreatureCenter(cardPlay.Target, "vfx/vfx_bite");
-            await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Poison.BaseValue,
+            await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, instance.DynamicVars.Poison.BaseValue,
                 instance.Owner.Creature, instance);
         }
     }

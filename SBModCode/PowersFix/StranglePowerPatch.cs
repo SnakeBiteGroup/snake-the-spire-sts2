@@ -31,7 +31,7 @@ public static class StranglePowerPatch
             
             {
                 VfxCmd.PlayOnCreatureCenter(instance.Owner,  "vfx/vfx_bite");
-                await PowerCmd.Apply<PoisonPower>(instance.Owner, instance.Amount, instance.Owner, null);
+                await PowerCmd.Apply<PoisonPower>(context,instance.Owner, instance.Amount, instance.Owner, null);
             }
         }
     }

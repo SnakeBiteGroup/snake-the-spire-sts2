@@ -28,18 +28,18 @@ public static class PlasmaOrbPatch
         return false;
     }
 
-    static async Task PatchPassive(PlasmaOrb instance, PlayerChoiceContext choiceContext, Creature? target)
+    static async Task PatchPassive(MegaCrit.Sts2.Core.Models.Orbs.PlasmaOrb instance,  PlayerChoiceContext choiceContext, Creature? target)
     {
         if (target != null)
         {
             throw new InvalidOperationException("Plasma orbs cannot target creatures.");
         }
-        instance.Trigger();
+        //instance.Trigger();
         await PlayerCmd.GainEnergy(instance.PassiveVal, instance.Owner);
         
         List<CardModel> cardsToAdd = new List<CardModel>();
         cardsToAdd.Add(instance.CombatState.CreateCard<Snakebite>(instance.Owner));
-        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand, instance.Owner);
     }
 
     [HarmonyPatch("Evoke")]
@@ -60,7 +60,7 @@ public static class PlasmaOrbPatch
         {
             cardsToAdd.Add(instance.CombatState.CreateCard<Snakebite>(instance.Owner));
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand,instance.Owner);
         
         return new List<Creature> { instance.Owner.Creature };
     }

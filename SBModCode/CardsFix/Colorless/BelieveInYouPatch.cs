@@ -37,7 +37,7 @@ public static class BelieveInYouPatch
     static async Task PatchOnPlay(BelieveInYou instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]

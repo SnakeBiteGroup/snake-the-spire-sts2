@@ -18,22 +18,6 @@ namespace SBMod.SBModCode.CardsFix.Token;
 [HarmonyPatch(typeof(Shiv))]
 public static class ShivPatch
 {
-    [HarmonyPatch("CanonicalVars", MethodType.Getter)]
-    [HarmonyPostfix]
-    static void CanonicalVarsPostfix(Shiv __instance, ref IEnumerable<DynamicVar> __result)
-    {
-        var newList = new List<DynamicVar>
-        {
-            new DamageVar(3m, ValueProp.Move),
-            new PowerVar<PoisonPower>(1m),
-		    new CalculationBaseVar(0m),
-		    new CalculationExtraVar(1m),
-		    new CalculatedVar("FanOfKnivesAmount").WithMultiplier((CardModel card, Creature? _) => 
-                (card != null && card.IsMutable && card.Owner != null) ? card.Owner.Creature.GetPowerAmount<FanOfKnivesPower>() : 0)
-        };
-        __result = newList;
-    }
-
     [HarmonyPatch("OnPlay")]
     [HarmonyPrefix]
     static bool OnPlayPrefix(Shiv __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
@@ -58,14 +42,13 @@ public static class ShivPatch
             attackCommand = attackCommand.TargetingAllOpponents(instance.CombatState).WithHitVfxNode(_ => NShivThrowVfx.Create(instance.Owner.Creature, lastEnemy, Colors.Green));
             foreach (var enemy in hittableEnemies)
             {
-                await PowerCmd.Apply<PoisonPower>(enemy, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+                await PowerCmd.Apply<PoisonPower>(choiceContext,enemy, totalPoison, instance.Owner.Creature, instance);
             }
         }
         else
         {
             ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-            attackCommand = attackCommand.Targeting(cardPlay.Target).WithHitVfxNode((Creature t) => NShivThrowVfx.Create(instance.Owner.Creature, t, Colors.Green));
-            await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, totalPoison, instance.Owner.Creature, instance);
         }
         if (instance.Owner.Character is MegaCrit.Sts2.Core.Models.Characters.Silent)
         {

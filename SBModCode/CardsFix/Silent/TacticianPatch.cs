@@ -52,7 +52,7 @@ public static class TacticianPatch
         {
             cardsToAdd.Add(instance.CombatState.CreateCard<Snakebite>(instance.Owner));
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand, instance.Owner);
         await PlayerCmd.GainEnergy(instance.DynamicVars.Energy.IntValue, instance.Owner);
     }
 

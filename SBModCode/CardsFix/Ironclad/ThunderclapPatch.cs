@@ -37,7 +37,7 @@ public static class ThunderclapPatch
        await DamageCmd.Attack(instance.DynamicVars.Damage.BaseValue).FromCard(instance).TargetingAllOpponents(instance.CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        await PowerCmd.Apply<EasySnakePower>(instance.CombatState.HittableEnemies, instance.DynamicVars.Vulnerable.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<EasySnakePower>(choiceContext,instance.CombatState.HittableEnemies, instance.DynamicVars.Vulnerable.BaseValue, instance.Owner.Creature, instance);
     
     }
 }

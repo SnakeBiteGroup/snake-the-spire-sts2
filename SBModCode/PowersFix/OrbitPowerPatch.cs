@@ -68,7 +68,7 @@ public static class OrbitPowerPatch
             {
                 instanceTraverse.Method("Flash").GetValue();
                 var snakebite = instance.Owner.CombatState.CreateCard<Snakebite>(instance.Owner.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(snakebite, PileType.Hand, addedByPlayer: true);
+                await CardPileCmd.AddGeneratedCardToCombat(snakebite, PileType.Hand, instance.Owner.Player);
                 dataTraverse.Field("triggerCount").SetValue(0);
             }
 

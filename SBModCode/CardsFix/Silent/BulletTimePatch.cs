@@ -29,6 +29,7 @@ public static class BulletTimePatch
                 card.SetToFreeThisTurn();
             }
         }
-        await PowerCmd.Apply<NoDrawPower>(instance.Owner.Creature, 1m, instance.Owner.Creature, instance);
+
+        await PowerCmd.Apply<NoDrawPower>(choiceContext,instance.Owner.Creature, 1m, instance.Owner.Creature, instance);
     }
 }

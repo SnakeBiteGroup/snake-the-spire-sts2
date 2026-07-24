@@ -56,7 +56,7 @@ public static class PerfectedStrikePatch
         int poisonAmount = (int)instance.DynamicVars.CalculatedDamage.BaseValue + (snakebiteCount * (int)instance.DynamicVars.ExtraDamage.BaseValue);
         await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Cast", instance.Owner.Character.CastAnimDelay);
         VfxCmd.PlayOnCreatureCenter(cardPlay.Target, "vfx/vfx_bite");
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, poisonAmount, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, poisonAmount, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]

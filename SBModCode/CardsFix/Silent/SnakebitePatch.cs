@@ -61,7 +61,7 @@ public static class SnakebitePatch
             foreach (var enemy in hittableEnemies)
             {
                 VfxCmd.PlayOnCreatureCenter(enemy, "vfx/vfx_bite");
-                await PowerCmd.Apply<PoisonPower>(enemy, totalPoison, instance.Owner.Creature, instance);
+                await PowerCmd.Apply<PoisonPower>(choiceContext,enemy, totalPoison, instance.Owner.Creature, instance);
             }
         }
         else
@@ -69,7 +69,7 @@ public static class SnakebitePatch
             ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
             await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Cast", instance.Owner.Character.CastAnimDelay);
             VfxCmd.PlayOnCreatureCenter(cardPlay.Target, "vfx/vfx_bite");
-            await PowerCmd.Apply<PoisonPower>(cardPlay.Target, totalPoison, instance.Owner.Creature, instance);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, totalPoison, instance.Owner.Creature, instance);
         }
     }
 }

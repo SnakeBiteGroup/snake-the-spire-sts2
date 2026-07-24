@@ -37,7 +37,7 @@ public static class TremblePatch
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Cast", instance.Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<EasySnakePower>(cardPlay.Target, instance.DynamicVars.Vulnerable.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<EasySnakePower>(choiceContext,cardPlay.Target, instance.DynamicVars.Vulnerable.BaseValue, instance.Owner.Creature, instance);
     }
 }
 
