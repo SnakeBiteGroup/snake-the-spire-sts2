@@ -32,7 +32,7 @@ public static class SerpentFormPowerPatch
             if (creature != null)
             {
                 VfxCmd.PlayOnCreatureCenter(creature, "vfx/vfx_bite");
-                await PowerCmd.Apply<PoisonPower>(creature, damage, instance.Owner, null);
+                await PowerCmd.Apply<PoisonPower>(context,creature, damage, instance.Owner, null);
             }
         }
     }

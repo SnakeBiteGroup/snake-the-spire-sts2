@@ -41,7 +41,7 @@ public static class MoltenFistPatch
         int num = cardPlay.Target.IsAlive ? cardPlay.Target.GetPowerAmount<EasySnakePower>() : 0;
         if (num > 0)
         {
-            await PowerCmd.Apply<EasySnakePower>(cardPlay.Target, num,instance.Owner.Creature, instance);
+            await PowerCmd.Apply<EasySnakePower>(choiceContext,cardPlay.Target, num,instance.Owner.Creature, instance);
         }
     }
 }

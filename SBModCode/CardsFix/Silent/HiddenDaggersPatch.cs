@@ -37,7 +37,7 @@ public static class HiddenDaggersPatch
         {
             cardsToAdd.Add(instance.CombatState.CreateCard<Snakebite>(instance.Owner));
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cardsToAdd, PileType.Hand, instance.Owner);
         
         if (instance.IsUpgraded)
         {

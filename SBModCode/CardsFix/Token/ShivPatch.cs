@@ -12,14 +12,6 @@ namespace SBMod.SBModCode.CardsFix.Token;
 [HarmonyPatch(typeof(Shiv))]
 public static class ShivPatch
 {
-    [HarmonyPatch(MethodType.Constructor)]
-    [HarmonyPostfix]
-    static void ConstructorPostfix(Shiv __instance)
-    {
-        var typeField = AccessTools.Field(typeof(CardModel), "<Type>k__BackingField");
-        typeField?.SetValue(__instance, CardType.Skill);
-    }
-    
     [HarmonyPatch("OnPlay")]
     [HarmonyPrefix]
     static bool OnPlayPrefix(Shiv __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
@@ -43,13 +35,13 @@ public static class ShivPatch
             var hittableEnemies = instance.CombatState.HittableEnemies;
             foreach (var enemy in hittableEnemies)
             {
-                await PowerCmd.Apply<PoisonPower>(enemy, totalPoison, instance.Owner.Creature, instance);
+                await PowerCmd.Apply<PoisonPower>(choiceContext,enemy, totalPoison, instance.Owner.Creature, instance);
             }
         }
         else
         {
             ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-            await PowerCmd.Apply<PoisonPower>(cardPlay.Target, totalPoison, instance.Owner.Creature, instance);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, totalPoison, instance.Owner.Creature, instance);
         }
     }
 

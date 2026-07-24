@@ -40,7 +40,7 @@ public static class ShiningStrikePatch
     {
         foreach (var enemy in instance.CombatState.HittableEnemies)
         {
-            await PowerCmd.Apply<PoisonPower>(enemy, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,enemy, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
         }
         await PlayerCmd.GainStars(instance.DynamicVars.Stars.BaseValue, instance.Owner);
         if (!instance.Keywords.Contains(CardKeyword.Exhaust) && !instance.ExhaustOnNextPlay)

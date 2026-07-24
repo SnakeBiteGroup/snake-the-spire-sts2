@@ -38,6 +38,6 @@ public static class CrashLandingPatch
         {
             list.Add(instance.CombatState.CreateCard<Snakebite>(instance.Owner));
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, instance.Owner);
     }
 }

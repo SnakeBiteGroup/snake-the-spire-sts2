@@ -13,13 +13,13 @@ public static class MasterPlannerPowerPatch
 {
     [HarmonyPatch(typeof(MasterPlannerPower), "AfterCardPlayed")]
     [HarmonyPrefix]
-    static bool AfterCardPlayedLatePrefix(MasterPlannerPower __instance, PlayerChoiceContext context, CardPlay cardPlay, ref Task __result)
+    static bool AfterCardPlayedLatePrefix(MasterPlannerPower __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
     {
-        __result = PatchAfterCardPlayedLate(__instance, context, cardPlay);
+        __result = PatchAfterCardPlayedLate(__instance, choiceContext, cardPlay);
         return false; // 跳过原方法
     }
 
-    static async Task PatchAfterCardPlayedLate(MasterPlannerPower instance, PlayerChoiceContext context, CardPlay cardPlay)
+    static async Task PatchAfterCardPlayedLate(MasterPlannerPower instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
 
         CardModel card = cardPlay.Card;
@@ -30,7 +30,7 @@ public static class MasterPlannerPowerPatch
 
         var snakebite = instance.Owner.CombatState.CreateCard<Snakebite>(instance.Owner.Player);
         if (cardPlay.Card.IsUpgraded) CardCmd.Upgrade(snakebite);
-        await CardCmd.Discard(context, card);
+        await CardCmd.Discard(choiceContext, card);
         await CardCmd.Transform(card, snakebite);
     }
 }

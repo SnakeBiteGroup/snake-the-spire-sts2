@@ -43,9 +43,9 @@ public static class GuidingStarPatch
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Cast", instance.Owner.Character.CastAnimDelay);
         VfxCmd.PlayOnCreatureCenter(cardPlay.Target, "vfx/vfx_bite");
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
         
-        await PowerCmd.Apply<DrawSnakebitesNextTurnPower>(instance.Owner.Creature, (int)instance.DynamicVars.Cards.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<DrawSnakebitesNextTurnPower>(choiceContext,instance.Owner.Creature, (int)instance.DynamicVars.Cards.BaseValue, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]

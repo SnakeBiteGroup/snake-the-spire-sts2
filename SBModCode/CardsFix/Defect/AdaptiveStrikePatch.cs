@@ -22,10 +22,10 @@ public static class AdaptiveStrikePatch
     static async Task PatchOnPlay(AdaptiveStrike instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Damage.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, instance.DynamicVars.Damage.BaseValue, instance.Owner.Creature, instance);
         CardModel cardModel = instance.CreateClone();
         cardModel.EnergyCost.SetThisCombat(0);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Discard, addedByPlayer: true), 1.5f);
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Discard, instance.Owner), 1.5f);
     }
 
     [HarmonyPatch("OnUpgrade")]

@@ -43,6 +43,7 @@ public static class BashPatch
             .Execute(choiceContext);
 
         await PowerCmd.Apply<EasySnakePower>(
+            choiceContext,
             cardPlay.Target,
             instance.DynamicVars.Vulnerable.BaseValue,
             instance.Owner.Creature,

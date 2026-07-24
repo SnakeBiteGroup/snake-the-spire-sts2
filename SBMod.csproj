@@ -1,152 +1,34 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1">
-    <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>true</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <DefaultItemExcludes>packages/**</DefaultItemExcludes>
-        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-        <PathMap>$(AppOutputBase)=.\</PathMap>
-        <RootNamespace>SBMod</RootNamespace>
-        <UseIncrementalBuild>false</UseIncrementalBuild>
-        <MSBuildDisableNodeReuse>true</MSBuildDisableNodeReuse>
-    </PropertyGroup>
+  <PropertyGroup>
+    <!-- 如果你安装了10.0并遇到问题，改下这里 -->
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <LangVersion>13.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-    <!-- OS Detection -->
-    <PropertyGroup>
-        <IsWindows>false</IsWindows>
-        <IsLinux>false</IsLinux>
-        <IsOSX>false</IsOSX>
-        <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
-        <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
-        <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
-    </PropertyGroup>
+    <!-- 改成你的杀戮尖塔2目录 -->
+    <Sts2Dir>E:\SteamLibrary\steamapps\common\Slay the Spire 2</Sts2Dir>
+    <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
+  </PropertyGroup>
 
-    <!-- // NOTE: Megadot is version 4.5.1, and the game won't load your .pck if the Godot version used is newer. -->
+  <ItemGroup>
+    <Reference Include="sts2">
+      <HintPath>$(Sts2DataDir)\sts2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
 
-    <!-- Windows -->
-    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
-        <AutoSteamPath>$(registry:HKEY_CURRENT_USER\Software\Valve\Steam@SteamPath)\steamapps</AutoSteamPath>
-        <SteamLibraryPath Condition="Exists('$(AutoSteamPath)/common/Slay the Spire 2')">$(AutoSteamPath)</SteamLibraryPath>
-        <!--没招了，那就igonre（ -->
-        <GodotPath Condition="'$(GodotPath)' == ''">E:/megadot/MegaDot_v4.5.1-stable_mono_win64.exe</GodotPath>
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">E:\SteamLibrary\steamapps</SteamLibraryPath>
-        
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
-    </PropertyGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(Sts2DataDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
 
-    <!-- Linux -->
-    <PropertyGroup Condition="'$(IsLinux)' == 'true'">
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">$(HOME)/.local/share/Steam/steamapps</SteamLibraryPath>
-        <GodotPath Condition="'$(GodotPath)' == ''">$(SteamLibraryPath)/common/Godot Engine/godot.x11.opt.tools.64</GodotPath>
-
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_linuxbsd_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <!-- macOS -->
-    <PropertyGroup Condition="'$(IsOSX)' == 'true'">
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">$(HOME)/Library/Application Support/Steam/steamapps</SteamLibraryPath>
-        <GodotPath Condition="'$(GodotPath)' == ''">$(HOME)/Applications/Godot_mono.app/Contents/MacOS/Godot</GodotPath>
-        
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/MacOS/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <NoWarn>$(NoWarn);MSB3270;STS001</NoWarn>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <Reference Include="0Harmony">
-            <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="sts2">
-            <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All" />
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
-        <AdditionalFiles Include="assets/localization/**/*.json"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="materials/**" />
-        <Compile Remove="shaders/**" />
-        <EmbeddedResource Remove="materials/**" />
-        <EmbeddedResource Remove="shaders/**" />
-        <Compile Remove="CharModCode\Character\**" />
-        <EmbeddedResource Remove="CharModCode\Character\**" />
-        <Compile Remove="CharModCode\Promote\Task\**" />
-        <EmbeddedResource Remove="CharModCode\Promote\Task\**" />
-        <Compile Remove="CharModCode\Promote\Events\**" />
-        <EmbeddedResource Remove="CharModCode\Promote\Events\**" />
-        <Compile Remove="CharModCode\Promote\Relics\TabletSkills\**" />
-        <EmbeddedResource Remove="CharModCode\Promote\Relics\TabletSkills\**" />
-        <Compile Remove="CharMod\**" />
-        <EmbeddedResource Remove="CharMod\**" />
-        <Compile Remove="assets\**" />
-        <EmbeddedResource Remove="assets\**" />
-        <Compile Remove="CharModCode\**" />
-        <EmbeddedResource Remove="CharModCode\**" />
-        <Compile Remove="SBMod\localizations\**" />
-        <EmbeddedResource Remove="SBMod\localizations\**" />
-        <Compile Remove="SBModCode\Helper\**" />
-        <EmbeddedResource Remove="SBModCode\Helper\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include=".gitignore" />
-        <None Include="project.godot" />
-        <None Include="CharMod/**" />
-        <None Remove="CharMod\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="images\packed\card_portraits\curse\" />
-      <Folder Include="images\packed\card_portraits\necrobinder\" />
-      <Folder Include="images\packed\card_portraits\quest\" />
-      <Folder Include="images\packed\card_portraits\status\" />
-      <Folder Include="SBModCode\RelicsFix\" />
-      <Folder Include="SBModCode\Relics\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="images\powers\draw_snakebites_next_turn_power.png" />
-      <Content Include="SBMod\localization\zhs\cards.json" />
-      <Content Include="images\packed\card_portraits\**\*.png" />
-      <Content Include="images\packed\card_portraits\**\*.png.import" />
-      <Content Include="SBMod\localization\zhs\combat_messages.json" />
-      <Content Include="SBMod\localization\zhs\orbs.json" />
-      <Content Include="SBMod\localization\zhs\powers.json" />
-      <Content Include="SBMod\localization\zhs\static_hover_tips.json" />
-    </ItemGroup>
-    
-    <Target Name="CopyToModsFolderOnPublish" AfterTargets="Publish">
-        <Message Text="Copying .dll and manifest to mods folder." Importance="high" />
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Copy SourceFiles="SBMod.json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Message Text="Copying BaseLib to mods folder." Importance="high" />
-        <ItemGroup>
-            <BaseLibFiles Include="packages/alchyr.sts2.baselib/**/lib/**/BaseLib.dll;packages/alchyr.sts2.baselib/**/Content/BaseLib.pck;packages/alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
-        </ItemGroup>
-    
-    </Target>
-
-    <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-              ContinueOnError="WarnAndContinue"/>
-    </Target>
-
-    <Target Name="GodotPublishSkipped" AfterTargets="Publish" Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')">
-        <Message Text="Skipping Godot .pck export because GodotPath is not configured." Importance="high"/>
-    </Target>
+  <!-- 自动复制dll和json -->
+  <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
+    <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high" />
+    <MakeDir Directories="$(Sts2Dir)\mods\" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(Sts2Dir)\mods\$(MSBuildProjectName)\" />
+    <Copy SourceFiles="$(MSBuildProjectName).json" DestinationFolder="$(Sts2Dir)/mods/$(MSBuildProjectName)/" />
+  </Target>
 </Project>

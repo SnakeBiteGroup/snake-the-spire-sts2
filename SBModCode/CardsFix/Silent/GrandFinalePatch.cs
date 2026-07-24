@@ -44,7 +44,7 @@ public static class GrandFinalePatch
         foreach (var enemy in hittableEnemies)
         {
             VfxCmd.PlayOnCreatureCenter(enemy, "vfx/vfx_bite");
-            await PowerCmd.Apply<PoisonPower>(enemy, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,enemy, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
         }
     }
 

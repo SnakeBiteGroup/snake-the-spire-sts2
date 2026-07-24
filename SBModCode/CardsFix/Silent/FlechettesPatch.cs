@@ -51,7 +51,7 @@ public static class FlechettesPatch
         for (int i = 0; i < snakebiteCount; i++)
         {
             VfxCmd.PlayOnCreatureCenter(cardPlay.Target, "vfx/vfx_bite");
-            await PowerCmd.Apply<PoisonPower>(cardPlay.Target, poisonAmount, instance.Owner.Creature, instance);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,cardPlay.Target, poisonAmount, instance.Owner.Creature, instance);
             await Task.Delay(200);
         }
     }

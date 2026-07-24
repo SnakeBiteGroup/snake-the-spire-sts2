@@ -29,12 +29,12 @@ public static class DramaticEntrancePatch
     static async Task PatchOnPlay(DramaticEntrance instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Attack", instance.Owner.Character.AttackAnimDelay);
-        VfxCmd.PlayFullScreenInCombat("vfx/vfx_dramatic_entrance_fullscreen");
+        VfxCmd.PlayFullScreenInCombat("vfx/vfx_dramatic_entrance_fullscreen",instance.Owner.Creature);
         var totalPoison = instance.DynamicVars.Damage.BaseValue;
         if (instance.CombatState == null) throw new Exception("Error: 蛇咬登场 PatchOnPlay CombatState 为空");
         foreach (Creature hittableEnemy in instance.CombatState.HittableEnemies)
         {
-            await PowerCmd.Apply<PoisonPower>(hittableEnemy, totalPoison, instance.Owner.Creature, instance);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,hittableEnemy, totalPoison, instance.Owner.Creature, instance);
         }
     }
 

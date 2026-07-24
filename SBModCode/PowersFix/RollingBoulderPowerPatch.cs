@@ -23,7 +23,7 @@ public static class RollingBoulderPowerPatch
         List<DamageResult> results = new List<DamageResult>();
         foreach (var target in targets)
         {
-            await PowerCmd.Apply<PoisonPower>(target, instance.Amount, instance.Owner, null);
+            await PowerCmd.Apply<PoisonPower>(choiceContext,target, instance.Amount, instance.Owner, null);
             results.Add(new DamageResult(target, ValueProp.Unpowered));
         }
         return results;

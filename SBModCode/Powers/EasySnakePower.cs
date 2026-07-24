@@ -28,7 +28,7 @@ public sealed class EasySnakePower : PowerModel
     [
        new DynamicVar("PoisonIncrease", 1.5m)
     ];
-    public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
+    public override decimal ModifyPowerAmountGivenMultiplicative(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
         if (power is PoisonPower && SnakebiteHelper.IsSnakebiteCard(cardSource))
         {
@@ -42,7 +42,7 @@ public sealed class EasySnakePower : PowerModel
         return amount;
     }
     
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == CombatSide.Enemy)
         {

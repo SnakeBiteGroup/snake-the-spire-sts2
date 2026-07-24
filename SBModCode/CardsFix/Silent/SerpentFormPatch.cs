@@ -32,7 +32,7 @@ public static class SerpentFormPatch
     static async Task PatchOnPlay(SerpentForm instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(instance.Owner.Creature, "Cast", instance.Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<SerpentFormPower>(instance.Owner.Creature, instance.DynamicVars["SerpentFormPower"].BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<SerpentFormPower>(choiceContext,instance.Owner.Creature, instance.DynamicVars["SerpentFormPower"].BaseValue, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]
