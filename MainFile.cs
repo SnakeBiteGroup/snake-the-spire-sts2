@@ -1,12 +1,7 @@
 using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Saves.Runs;
 using SBMod.SBModCode.Extensions;
 
 namespace SBMOD;
@@ -21,7 +16,7 @@ public partial class MainFile : Node
     public static void Initialize()
     {
         Harmony harmony = new(ModId);
-
+        
         harmony.PatchAll();
         
         WhatSbCardsWeHave.RegisterAll();
