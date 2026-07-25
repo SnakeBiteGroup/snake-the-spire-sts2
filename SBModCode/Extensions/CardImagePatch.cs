@@ -68,7 +68,18 @@ public static class CardImagePatch
         typeof(BouncingFlask),
         typeof(Finisher),
         typeof(HandTrick),
-        typeof(ShadowStep)
+        typeof(ShadowStep),
+        typeof(Accuracy),
+        typeof(Acrobatics),
+        typeof(Adrenaline),
+        typeof(Neutralize),
+        typeof(NoxiousFumes),
+        typeof(Pinpoint),
+        typeof(PoisonedStab),
+        typeof(Prepared),
+        typeof(Sneaky),
+        typeof(SuckerPunch),
+        typeof(TheHunt)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
