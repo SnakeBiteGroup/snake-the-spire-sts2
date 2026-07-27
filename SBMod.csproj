@@ -36,13 +36,8 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <!-- ============ 抑制警告 ============ -->
         <NoWarn>$(NoWarn);MSB3270;CS0436;STS001</NoWarn>
-        <!--
-            抑制 CS8600/CS8602/CS8603/CS8604：
-            这些是 nullable 静态分析警告，主要因为游戏 sts2.dll 的 API 没有 nullable 标注，
-            编译器将所有引用类型参数/返回值视为 nullable，导致 mod 代码大量误报。
-            运行时游戏保证这些对象（Owner/CombatState/Card.Owner 等）不为 null。
-        -->
         <NoWarn>$(NoWarn);CS8600;CS8602;CS8603;CS8604</NoWarn>
     </PropertyGroup>
 
