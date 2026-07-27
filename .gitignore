@@ -21,8 +21,9 @@ SBMod.pck
 *.uid
 *.import
 .idea/
+.vscode/
+.vs/
 snake-the-spire-sts2.sln
-SBMod.csproj
 
 # 包相关目录
 .package/

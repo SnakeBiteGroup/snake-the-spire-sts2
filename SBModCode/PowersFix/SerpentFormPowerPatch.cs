@@ -13,18 +13,18 @@ public static class SerpentFormPowerPatch
 {
     [HarmonyPatch("AfterCardPlayed")]
     [HarmonyPrefix]
-    static bool AfterCardPlayedPrefix(SerpentFormPower __instance, PlayerChoiceContext context, CardPlay cardPlay, ref Task __result)
+    static bool AfterCardPlayedPrefix(SerpentFormPower __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
     {
-        __result = PatchAfterCardPlayed(__instance, context, cardPlay);
+        __result = PatchAfterCardPlayed(__instance, choiceContext, cardPlay);
         return false;
     }
 
-    static async Task PatchAfterCardPlayed(SerpentFormPower instance, PlayerChoiceContext context, CardPlay cardPlay)
+    static async Task PatchAfterCardPlayed(SerpentFormPower instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var internalData = Traverse.Create(instance).Field("_internalData").GetValue();
         var dataTraverse = Traverse.Create(internalData);
         var amountsForPlayedCards = dataTraverse.Field("amountsForPlayedCards").GetValue<Dictionary<CardModel, int>>();
-        
+
         if (cardPlay.Card.Owner == instance.Owner.Player && amountsForPlayedCards.Remove(cardPlay.Card, out var damage) && damage > 0)
         {
             await Cmd.CustomScaledWait(0.1f, 0.2f);
@@ -32,7 +32,7 @@ public static class SerpentFormPowerPatch
             if (creature != null)
             {
                 VfxCmd.PlayOnCreatureCenter(creature, "vfx/vfx_bite");
-                await PowerCmd.Apply<PoisonPower>(context,creature, damage, instance.Owner, null);
+                await PowerCmd.Apply<PoisonPower>(choiceContext, creature, damage, instance.Owner, null);
             }
         }
     }

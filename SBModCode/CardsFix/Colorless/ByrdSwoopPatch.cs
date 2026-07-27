@@ -54,7 +54,7 @@ public static class ByrdSwoopPatch
             .WithAttackerAnim("Attack", instance.Owner.Character.AttackAnimDelay, instance.Owner.PlayerCombatState.GetPet<Byrdpip>())
             .WithHitFx("vfx/vfx_attack_slash", "event:/sfx/byrdpip/byrdpip_attack")
             .Execute(choiceContext);
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<PoisonPower>(choiceContext, cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]

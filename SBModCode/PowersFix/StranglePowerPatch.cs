@@ -13,25 +13,25 @@ public static class StranglePowerPatch
 {
     [HarmonyPatch("AfterCardPlayed")]
     [HarmonyPrefix]
-    static bool AfterCardPlayedPrefix(StranglePower __instance, PlayerChoiceContext context, CardPlay cardPlay, ref Task __result)
+    static bool AfterCardPlayedPrefix(StranglePower __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay, ref Task __result)
     {
-        __result = PatchAfterCardPlayed(__instance, context, cardPlay);
+        __result = PatchAfterCardPlayed(__instance, choiceContext, cardPlay);
         return false;
     }
 
-    static async Task PatchAfterCardPlayed(StranglePower instance, PlayerChoiceContext context, CardPlay cardPlay)
+    static async Task PatchAfterCardPlayed(StranglePower instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var internalData = Traverse.Create(instance).Field("_internalData").GetValue();
         var dataTraverse = Traverse.Create(internalData);
         var amountsForPlayedCards = dataTraverse.Field("amountsForPlayedCards").GetValue<Dictionary<CardModel, int>>();
-        
+
         if (amountsForPlayedCards.Remove(cardPlay.Card, out var value))
         {
             Traverse.Create(instance).Method("Flash").GetValue();
-            
+
             {
                 VfxCmd.PlayOnCreatureCenter(instance.Owner,  "vfx/vfx_bite");
-                await PowerCmd.Apply<PoisonPower>(context,instance.Owner, instance.Amount, instance.Owner, null);
+                await PowerCmd.Apply<PoisonPower>(choiceContext, instance.Owner, instance.Amount, instance.Owner, null);
             }
         }
     }

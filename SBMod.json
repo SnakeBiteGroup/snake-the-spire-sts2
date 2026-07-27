@@ -1,9 +1,9 @@
 {
   "id": "SBMod",
   "name": "蛇咬尖塔",
-  "author": "面包0712",
+  "author": "面包！",
   "description": "Snake the Spire！",
-  "version": "v0.0.0",
+  "version": "v0.0.1",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [],

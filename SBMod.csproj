@@ -1,34 +1,179 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1">
-  <PropertyGroup>
-    <!-- 如果你安装了10.0并遇到问题，改下这里 -->
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>true</ImplicitUsings>
-    <LangVersion>13.0</LangVersion>
-    <Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Import Project=".\local.props" Condition="Exists('.\local.props')"/>
+    <Import Project=".\Sts2PathDiscovery.props"/>
 
-    <!-- 改成你的杀戮尖塔2目录 -->
-    <Sts2Dir>E:\SteamLibrary\steamapps\common\Slay the Spire 2</Sts2Dir>
-    <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
-  </PropertyGroup>
+    <!-- ============ Mod 名称常量 ============ -->
+    <PropertyGroup>
+        <ModName>SBMod</ModName>
+        <ModName Condition="'$(ModName)' == ''">$(MSBuildProjectName)</ModName>
+        <!-- 输出 dll 名字与 manifest id 一致，否则游戏找不到 assembly -->
+        <AssemblyName>$(ModName)</AssemblyName>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="sts2">
-      <HintPath>$(Sts2DataDir)\sts2.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <!-- ============ 编译与语言设置 ============ -->
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>13.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <RootNamespace>$(ModName)</RootNamespace>
+        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+        <DefaultItemExcludes>packages/**</DefaultItemExcludes>
+        <UseIncrementalBuild>false</UseIncrementalBuild>
+        <MSBuildDisableNodeReuse>true</MSBuildDisableNodeReuse>
+    </PropertyGroup>
 
-    <Reference Include="0Harmony">
-      <HintPath>$(Sts2DataDir)\0Harmony.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-  </ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <Optimize>false</Optimize>
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <Optimize>true</Optimize>
+        <DebugType>none</DebugType>
+        <PathMap>$(AppOutputBase)=.\</PathMap>
+    </PropertyGroup>
 
-  <!-- 自动复制dll和json -->
-  <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
-    <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high" />
-    <MakeDir Directories="$(Sts2Dir)\mods\" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(Sts2Dir)\mods\$(MSBuildProjectName)\" />
-    <Copy SourceFiles="$(MSBuildProjectName).json" DestinationFolder="$(Sts2Dir)/mods/$(MSBuildProjectName)/" />
-  </Target>
+    <PropertyGroup>
+        <NoWarn>$(NoWarn);MSB3270;CS0436;STS001</NoWarn>
+        <!--
+            抑制 CS8600/CS8602/CS8603/CS8604：
+            这些是 nullable 静态分析警告，主要因为游戏 sts2.dll 的 API 没有 nullable 标注，
+            编译器将所有引用类型参数/返回值视为 nullable，导致 mod 代码大量误报。
+            运行时游戏保证这些对象（Owner/CombatState/Card.Owner 等）不为 null。
+        -->
+        <NoWarn>$(NoWarn);CS8600;CS8602;CS8603;CS8604</NoWarn>
+    </PropertyGroup>
+
+    <!-- ============ Guard：是否启用 RitsuLib 生态（直接在这里修改） ============ -->
+    <PropertyGroup>
+        <!-- 设为 false 即禁用所有 RitsuLib 相关功能 -->
+        <UseRitsuLib>flase</UseRitsuLib>
+    </PropertyGroup>
+
+    <!-- ============ 游戏本体引用 ============ -->
+    <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="sts2">
+            <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Steamworks.NET">
+            <HintPath>$(Sts2DataDir)/Steamworks.NET.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+    <!-- ============ NuGet 工具包 ============ -->
+    <ItemGroup>
+        <PackageReference Include="Krafs.Publicizer" Version="2.2.1" PrivateAssets="all" />
+    </ItemGroup>
+
+    <!-- RitsuLib 相关包（仅当 UseRitsuLib = true 时引入） -->
+    <ItemGroup Condition="'$(UseRitsuLib)' == 'true'">
+        <PackageReference Include="Nothing.STS2RitsuLib.ModAnalyzers" Version="*" PrivateAssets="all"/>
+        <PackageReference Include="STS2.RitsuLib" Version="*" GeneratePathProperty="true"/>
+    </ItemGroup>
+
+    <!-- 公开化游戏核心程序集（仅 RitsuLib 模式需要） -->
+    <ItemGroup Condition="'$(UseRitsuLib)' == 'true'">
+        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
+    </ItemGroup>
+
+    <!-- ============ Godot 资源管理 ============ -->
+    <ItemGroup>
+        <Compile Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**"/>
+        <EmbeddedResource Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**"/>
+        <None Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**"/>
+
+        <AdditionalFiles Include="$(ModName)/localization/**/*.json"/>
+
+        <Compile Remove="$(ModName)/**"/>
+        <EmbeddedResource Remove="$(ModName)/**"/>
+        <None Include="$(ModName)/**"/>
+
+        <None Include="$(ModName).json" CopyToOutputDirectory="PreserveNewest" />
+        <None Include="project.godot"/>
+        <None Include="export_presets.cfg"/>
+        <None Include=".gitignore"/>
+        <None Include="local.props.template"/>
+        <None Include="Sts2PathDiscovery.props"/>
+        <None Include="local.props" Condition="Exists('local.props')" Pack="false" CopyToOutputDirectory="Never"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="$(ModName)\images\cards\"/>
+        <Folder Include="$(ModName)\images\characters\"/>
+        <Folder Include="$(ModName)\images\relics\"/>
+        <Folder Include="$(ModName)\scenes\characters\"/>
+    </ItemGroup>
+
+    <!-- ============ 构建流程 ============ -->
+
+    <!-- RitsuLib 清单同步（仅 UseRitsuLib = true 时运行） -->
+    <Target Name="SyncManifestDependencies" BeforeTargets="Publish"
+            Condition="'$(UseRitsuLib)' == 'true' and '$(DesignTimeBuild)' != 'true' and '$(PkgSTS2_RitsuLib)' != ''">
+        <PropertyGroup>
+            <RitsuLibVersion>$([System.IO.Path]::GetFileName('$(PkgSTS2_RitsuLib)'))</RitsuLibVersion>
+            <ManifestFile>$(MSBuildProjectDirectory)\$(ModName).json</ManifestFile>
+        </PropertyGroup>
+        <PropertyGroup>
+            <_Json>$([System.IO.File]::ReadAllText('$(ManifestFile)'))</_Json>
+            <_HasVersion>$([System.Text.RegularExpressions.Regex]::IsMatch('$(_Json)', '(?s)&quot;id&quot;\s*:\s*&quot;STS2-RitsuLib&quot;.*?&quot;version&quot;\s*:\s*&quot;([^&quot;]+)&quot;'))</_HasVersion>
+            <_CurrentVersion Condition="'$(_HasVersion)' == 'True'">$([System.Text.RegularExpressions.Regex]::Replace('$(_Json)', '(?s).*?&quot;id&quot;\s*:\s*&quot;STS2-RitsuLib&quot;.*?&quot;version&quot;\s*:\s*&quot;([^&quot;]+)&quot;.*', '$1'))</_CurrentVersion>
+            <_NeedsUpdate>false</_NeedsUpdate>
+            <_NeedsUpdate Condition="'$(_CurrentVersion)' != '' and '$(_CurrentVersion)' != '$(RitsuLibVersion)'">true</_NeedsUpdate>
+        </PropertyGroup>
+        <Error Condition="'$(_HasVersion)' != 'True'"
+               Text="Could not find dependencies[STS2-RitsuLib].version in '$(ManifestFile)'."/>
+        <Message Importance="High" Condition="'$(_NeedsUpdate)' == 'true'"
+                 Text="Sync STS2-RitsuLib manifest dependency: $(_CurrentVersion) -> $(RitsuLibVersion)"/>
+        <Message Importance="Low" Condition="'$(_NeedsUpdate)' != 'true'"
+                 Text="STS2-RitsuLib manifest dependency already matches $(RitsuLibVersion)."/>
+        <PropertyGroup Condition="'$(_NeedsUpdate)' == 'true'">
+            <_Pattern>(?s)(&quot;STS2-RitsuLib&quot;.*?&quot;version&quot;\s*:\s*&quot;)[^&quot;]+(&quot;)</_Pattern>
+            <_Replacement>${1}$(RitsuLibVersion)${2}</_Replacement>
+            <_Updated>$([System.Text.RegularExpressions.Regex]::Replace('$(_Json)', '$(_Pattern)', '$(_Replacement)'))</_Updated>
+        </PropertyGroup>
+        <ItemGroup Condition="'$(_NeedsUpdate)' == 'true'">
+            <_Lines Include="$([System.Text.RegularExpressions.Regex]::Split('$(_Updated)', '\\r?\\n'))"/>
+        </ItemGroup>
+        <WriteLinesToFile Condition="'$(_NeedsUpdate)' == 'true'"
+                          File="$(ManifestFile)" Lines="@(_Lines)" Overwrite="true"/>
+    </Target>
+
+    <Target Name="CopyToModsFolderOnPublish" AfterTargets="Publish">
+        <Message Text="Copying .dll and manifest to mods folder." Importance="high" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModName)/" />
+        <Copy SourceFiles="$(ModName).json" DestinationFolder="$(ModsPath)$(ModName)/" />
+    </Target>
+
+    <Target Name="GodotPublish" AfterTargets="Publish"
+            Condition="'$(RunPckExport)' != 'false' and '$(GodotExe)' != '' and Exists('$(GodotExe)') and '$(IsInnerGodotExport)' != 'true'">
+        <PropertyGroup>
+            <_PckPath>$(ModsPath)$(ModName)/$(ModName).pck</_PckPath>
+        </PropertyGroup>
+        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
+        <!--
+            IgnoreStandardErrorWarningFormat=true：
+            Godot headless 导出 pck 时会在 stderr 输出 .NET assembly 加载异常堆栈（因为依赖 dll
+            不在 Godot 的 probing path 中），但 pck 实际成功生成。
+            MSBuild Exec 默认解析 stderr 中的 "error" 关键字并设置错误标志（MSB3073），
+            加此属性阻止解析，改为用 pck 文件存在性判断导出是否成功。
+        -->
+        <Exec Command="&quot;$(GodotExe)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(_PckPath)&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              IgnoreStandardErrorWarningFormat="true" />
+        <Error Condition="!Exists('$(_PckPath)')" Text="Godot .pck export failed: $(_PckPath) not found." />
+        <Message Text="Godot .pck exported: $(_PckPath)" Importance="high" Condition="Exists('$(_PckPath)')" />
+    </Target>
+
+    <Target Name="GodotPublishSkipped" AfterTargets="Publish"
+            Condition="'$(RunPckExport)' == 'false' or '$(GodotExe)' == '' or !Exists('$(GodotExe)')">
+        <Message Text="Skipping Godot .pck export (RunPckExport='$(RunPckExport)', GodotExe='$(GodotExe)'). Set GodotExe in local.props — see local.props.template." Importance="high"/>
+    </Target>
 </Project>
