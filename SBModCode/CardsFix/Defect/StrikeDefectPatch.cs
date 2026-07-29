@@ -49,7 +49,7 @@ public static class StrikeDefectPatch
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         VfxCmd.PlayOnCreatureCenter(cardPlay.Target, "vfx/vfx_bite");
-        await PowerCmd.Apply<PoisonPower>(cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
+        await PowerCmd.Apply<PoisonPower>(choiceContext, cardPlay.Target, instance.DynamicVars.Poison.BaseValue, instance.Owner.Creature, instance);
     }
 
     [HarmonyPatch("OnUpgrade")]

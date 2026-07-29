@@ -30,6 +30,7 @@ public static class ShivPatch
     {
         var hasFanOfKnives = false;
         AttackCommand attackCommand = DamageCmd.Attack(instance.DynamicVars.Damage.BaseValue).FromCard(instance);
+        var totalPoison = instance.DynamicVars.Poison.BaseValue;
         if (CombatManager.Instance.IsInProgress && instance.Owner != null)
         {
             hasFanOfKnives = instance.Owner.Creature.HasPower<FanOfKnivesPower>();
