@@ -54,7 +54,32 @@ public static class CardImagePatch
         typeof(UpMySleeve),
         typeof(StrikeSilent),
         typeof(DaggerThrow),
-        typeof(FlickFlack)
+        typeof(FlickFlack),
+        typeof(Backstab),
+        typeof(Burst),
+        typeof(DeadlyPoison),
+        typeof(DefendSilent),
+        typeof(EchoingSlash),
+        typeof(PiercingWail),
+        typeof(PreciseCut),
+        typeof(Predator),
+        typeof(Ricochet),
+        typeof(Survivor),
+        typeof(BouncingFlask),
+        typeof(Finisher),
+        typeof(HandTrick),
+        typeof(ShadowStep),
+        typeof(Accuracy),
+        typeof(Acrobatics),
+        typeof(Adrenaline),
+        typeof(Neutralize),
+        typeof(NoxiousFumes),
+        typeof(Pinpoint),
+        typeof(PoisonedStab),
+        typeof(Prepared),
+        typeof(Sneaky),
+        typeof(SuckerPunch),
+        typeof(TheHunt)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
