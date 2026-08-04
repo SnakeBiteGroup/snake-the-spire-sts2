@@ -79,7 +79,28 @@ public static class CardImagePatch
         typeof(Prepared),
         typeof(Sneaky),
         typeof(SuckerPunch),
-        typeof(TheHunt)
+        typeof(TheHunt),
+        typeof(Accelerant),
+        typeof(Afterimage),
+        typeof(Anticipate),
+        typeof(Assassinate),
+        typeof(Backflip),
+        typeof(Blur),
+        typeof(BubbleBubble),
+        typeof(DodgeAndRoll),
+        typeof(Envenom),
+        typeof(EscapePlan),
+        typeof(Expertise),
+        typeof(Expose),
+        typeof(Flanking),
+        typeof(Footwork),
+        typeof(Haze),
+        typeof(InfiniteBlades),
+        typeof(LegSweep),
+        typeof(Mirage),
+        typeof(Murder),
+        typeof(Pounce),
+        typeof(Speedster)
     };
 
     [HarmonyPatch(typeof(CardModel), "HasPortrait", MethodType.Getter)]
